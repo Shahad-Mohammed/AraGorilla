@@ -92,36 +92,35 @@
     ]
   },
   {
-    "instruction": "لدينا نادي طلابي يجتمع كل أسبوعين للعب كرة القدم الافتراضية. زودهم بأداة للعب ضد وكيل التعلم الآلي.",
-    "instances": [
-      {
-        "API": {
-          "domain": "Reinforcement Learning",
-          "framework": "Stable-Baselines3",
-          "functionality": "LunarLander-v2",
-          "api_name": "araffin/ppo-LunarLander-v2",
-          "api_call": "PPO.load_from_hub('araffin/ppo-LunarLander-v2')",
-          "api_arguments": {
-            "checkpoint": "araffin/ppo-LunarLander-v2.zip"
-          },
-          "python_environment_requirements": [
-            "huggingface_sb3",
-            "stable_baselines3"
-          ],
-          "example_code": {
-            "load_model": "from huggingface_sb3 import load_from_hub\ncheckpoint = load_from_hub(araffin/ppo-LunarLander-v2, ppo-LunarLander-v2.zip)\nmodel = PPO.load(checkpoint)",
-            "evaluate": "from stable_baselines3.common.env_util import make_vec_env\nfrom stable_baselines3.common.evaluation import evaluate_policy\nenv = make_vec_env(LunarLander-v2, n_envs=1)\nmean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=20, deterministic=True)\nprint(fMean reward = {mean_reward:.2f} +/- {std_reward:.2f})"
-          },
-          "performance": {
-            "dataset": "LunarLander-v2",
-            "accuracy": "283.49 +/- 13.74"
-          },
-          "description": "This is a trained model of a PPO agent playing LunarLander-v2 using the stable-baselines3 library."
-        },
-        "output": "<<<domain>>>: Reinforcement Learning\n<<<api_call>>>: mlagents-load-from-hf --repo-id='Raiden-1001/poca-Soccerv7.1' --local-dir='./downloads'\n<<<api_provider>>>: Unity ML-Agents\n<<<explanation>>>: 1.تأكد من تثبيت Unity ML-Agents وحزمة ml-agents في بيئة Python الخاصة بك.\n2.قم بتنزيل نموذج وكيل poca المدرب 'Raiden-1001/poca-Soccerv7.1' باستخدام أمر استدعاء API المقدم. سيؤدي ذلك إلى حفظ الملفات في مجلد 'downloads'.\n3. ستحتاج إلى إنشاء ملف تكوين بتنسيق YAML (مثل your_configuration_file_path.yaml) يصف إعداد التدريب والمعلمات الفائقة المطلوبة لتشغيل الوكيل في بيئة SoccerTwos. LunarLander-v2.\n4.استخدم الأمر 'mlagents-learn' مع مسار ملف التكوين ومعرف التشغيل لبدء بيئة Unity حيث يمكن للطلاب لعب كرة القدم الافتراضية ضد خصم ذكاء اصطناعي.\n5. تأكد من استخدام العلامة '--resume' لبدء عملية التعلم من النموذج المقدم بواسطة API.\n"
-      }
-    ]
-  },
+        "instruction": "لدينا نادي طلابي يجتمع كل أسبوعين للعب كرة القدم الافتراضية. زودهم بأداة للعب ضد وكيل التعلم الآلي.",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Reinforcement Learning",
+                    "framework": "ML-Agents",
+                    "functionality": "SoccerTwos",
+                    "api_name": "Raiden-1001/poca-Soccerv7",
+                    "api_call": "mlagents-load-from-hf --repo-id='Raiden-1001/poca-Soccerv7.1' --local-dir='./downloads'",
+                    "api_arguments": [
+                        "your_configuration_file_path.yaml",
+                        "run_id"
+                    ],
+                    "python_environment_requirements": [
+                        "unity-ml-agents",
+                        "deep-reinforcement-learning",
+                        "ML-Agents-SoccerTwos"
+                    ],
+                    "example_code": "Step 1: Write your model_id: Raiden-1001/poca-Soccerv7\nStep 2: Select your .nn /.onnx file\nClick on Watch the agent play \ud83d\udc40",
+                    "performance": {
+                        "dataset": "SoccerTwos",
+                        "accuracy": "Not provided"
+                    },
+                    "description": "This is a trained model of a poca agent playing SoccerTwos using the Unity ML-Agents Library."
+                },
+                "output": "<<<domain>>>: Reinforcement Learning\n<<<api_call>>>: mlagents-load-from-hf --repo-id='Raiden-1001/poca-Soccerv7.1' --local-dir='./downloads'\n<<<api_provider>>>: Unity ML-Agents\n<<<explanation>>>: 1.تأكد من تثبيت Unity ML-Agents وحزمة ml-agents في بيئة Python الخاصة بك.\n2.قم بتنزيل نموذج وكيل poca المدرب 'Raiden-1001/poca-Soccerv7.1' باستخدام أمر استدعاء API المقدم. سيؤدي ذلك إلى حفظ الملفات في مجلد 'downloads'.\n3. ستحتاج إلى إنشاء ملف تكوين بتنسيق YAML (مثل your_configuration_file_path.yaml) يصف إعداد التدريب والمعلمات الفائقة المطلوبة لتشغيل الوكيل في بيئة SoccerTwos. LunarLander-v2.\n4.استخدم الأمر 'mlagents-learn' مع مسار ملف التكوين ومعرف التشغيل لبدء بيئة Unity حيث يمكن للطلاب لعب كرة القدم الافتراضية ضد خصم ذكاء اصطناعي.\n5. تأكد من استخدام العلامة '--resume' لبدء عملية التعلم من النموذج المقدم بواسطة API.\n"
+            }
+        ]
+    },
   {
     "instruction": "تقوم شركتنا ببناء منتج للبحث عن الوظائف، ونريد التنبؤ براتب الوظيفة بناءً على بعض مجموعات البيانات المتوفرة.",
     "instances": [
