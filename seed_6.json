@@ -129,7 +129,7 @@
         ]
     },
     {
-        "instruction": "نحتاج إلى نموذج تصنيف للتنبؤ بميلا العميل نحو المنتج الجديد المطروح.",
+        "instruction": "تقوم شركتنا ببناء منتج للبحث عن الوظائف، ونريد التنبؤ براتب الوظيفة بناءً على بعض مجموعات البيانات المتوفرة.",
         "instances": [
             {
                 "API": {
@@ -171,7 +171,7 @@
                     },
                     "description": "A tabular classification model using the Scikit-learn framework and Joblib functionality. The model is trained with various hyperparameters and can be used for classification tasks."
                 },
-                "output": "<<<domain>>>: Tabular Tabular Classification\n<<<api_call>>>: load('path_to_folder/sklearn_model.joblib')\n<<<api_provider>>>: Scikit-learn\n<<<explanation>>>: 1. نقوم أولاً بتثبيت المكتبات المطلوبة، بما في ذلك scikit-learn و joblib.\n2. نستخدم وظيفة joblib.load ونقدم لها المسار حيث يوجد ملف sklearn_model.joblib. يحتوي هذا الملف على نموذج تصنيف جدولي مدرب بمعلمات فائقة لتوقع ميلا العملاء نحو منتج جديد.\n3. بمجرد تحميل النموذج، يمكننا استخدام طريقة التنبؤ للتنبؤ بميلا العميل على البيانات الجديدة المدخلة مع أعمدة الميزات التي تتطابق مع بيانات التدريب الخاصة بالنموذج.\n"
+                "output": "<<<domain>>>: Tabular Tabular Classification\n<<<api_call>>>: load('path_to_folder/sklearn_model.joblib')\n<<<api_provider>>>: Scikit-learn\n<<<explanation>>>:1. سنستخدم نموذج تصنيف جدولي تم تدريبه مسبقًا من Scikit-Learn للتنبؤ براتب الوظيفة بناءً على الميزات المتوفرة في مجموعة البيانات.\n2. يمكن تحميل النموذج باستخدام وظيفة `load` الخاصة بحزمة joblib وتحديد المسار حيث يتم تخزين النموذج (في هذه الحالة، 'path_to_folder/sklearn_model.joblib').\n3. بمجرد تحميل النموذج، يمكن استخدامه لإجراء تنبؤات بشأن بيانات الميزات، مثل سنوات الخبرة، أو المسمى الوظيفي، أو الموقع، والتي سيتم استخدامها بعد ذلك لتقدير راتب الوظيفة.\n4. يمكن استخدام الراتب المتوقع كجزء من منتج البحث عن وظيفة لتزويد المستخدمين بتقدير للدخل المحتمل لقائمة وظائف معينة.\n"
             }
         ]
     }
