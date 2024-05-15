@@ -46,28 +46,30 @@
     ]
   },
   {
-    "instruction": "حدد عمق الكائنات في صورة لروبوت ذاتي لتحديد المواقع والتنقل بشكل أفضل في بيئته.",
+    "instruction": "تقوم شركتنا بتصميم مركبات ذاتية القيادة، ونحتاج إلى تقدير عمق الأشياء في المشهد الذي تلتقطه كاميراتنا.",
     "instances": [
-      {
-        "API": {
-          "domain": "Computer Vision Depth Estimation",
-          "framework": "Hugging Face Transformers",
-          "functionality": "Transformers",
-          "api_name": "tiny-random-DPTForDepthEstimation",
-          "api_call": "DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')",
-          "api_arguments": [],
-          "python_environment_requirements": ["transformers"],
-          "example_code": "",
-          "performance": {
-            "dataset": "",
-            "accuracy": ""
-          },
-          "description": "A tiny random DPT model for depth estimation using Hugging Face Transformers library."
-        },
-        "output": "<<<domain>>>: Computer Vision Depth Estimation\n<<<api_call>>>: DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>(1) نحتاج إلى استيراد فئة 'DPTForDepthEstimation' من حزمة transformers.\n(2) بعد ذلك، سنقوم بتحميل النموذج المدرب مسبقًا 'hf-tiny-model-private/tiny-random-DPTForDepthEstimation'.\n(3) بعد تحميل النموذج، ندخل ملف الصورة إلى النموذج. يخرج النموذج ثم خريطة عمق للصورة التي يمكن أن تساعد الروبوت الذاتي في فهم عمق الكائنات في بيئته.\n"
-      }
+        {
+            "API": {
+                "domain": "Computer Vision Depth Estimation",
+                "framework": "Hugging Face Transformers",
+                "functionality": "Transformers",
+                "api_name": "tiny-random-DPTForDepthEstimation",
+                "api_call": "DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')",
+                "api_arguments": [],
+                "python_environment_requirements": [
+                    "transformers"
+                ],
+                "example_code": "",
+                "performance": {
+                    "dataset": "",
+                    "accuracy": ""
+                },
+                "description": "A tiny random DPT model for depth estimation using Hugging Face Transformers library."
+            },
+            "output": "<<<domain>>>: Computer Vision Depth Estimation\n<<<api_call>>>: AutoModelForImageClassification.from_pretrained('sayakpaul/glpn-nyu-finetuned-diode-230131-041708')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>1. قم باستيراد الحزم المطلوبة، مثل 'AutoModelForImageClassification' من Transformers و'Image' من PIL لمعالجة بيانات الصورة.\n2. قم بتحميل النموذج الذي تم تدريبه مسبقًا 'sayakpaul/glpn-nyu-finetuned-diode-230131-041708' باستخدام الأسلوب 'AutoModelForImageClassification.from_pretrained'.\n3. تم ضبط هذا النموذج بدقة على مجموعة بيانات المجموعة الفرعية للصمام الثنائي لمهام تقدير العمق في سيناريوهات رؤية الكمبيوتر، مثل اكتشاف الكائنات في مشهد ما للمركبات المستقلة.\n4. يمكننا بعد ذلك استخدام النموذج لتقدير عمق الكائنات في صورة معينة، سواء تم التقاطها بواسطة الكاميرات الموجودة على السيارة أو تم تحميلها من ملف.\n"
+        }
     ]
-  },
+},
   {
     "instruction": "أنشئ قصة قصيرة تبدأ بـ \"كان ياما كان في أرض بعيدة\".",
     "instances": [
