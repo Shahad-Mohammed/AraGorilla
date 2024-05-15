@@ -1,172 +1,178 @@
 [
-  {
-    "instruction": "أنا مهتم بتوليد فيديو من وصف نصي لمشهد يصور الحيوانات في البرية. هل يمكنك مساعدتي في ذلك؟",
-    "instances": [
-      {
-        "API": {
-          "domain": "Multimodal Text-to-Video",
-          "framework": "Hugging Face",
-          "functionality": "Text-to-Video",
-          "api_name": "chavinlo/TempoFunk",
-          "api_call": "pipeline('text-to-video', model='chavinlo/TempoFunk')",
-          "api_arguments": ["input_text"],
-          "python_environment_requirements": ["transformers"],
-          "example_code": "",
-          "performance": {
-            "dataset": "",
-            "accuracy": ""
-          },
-          "description": "A Text-to-Video model using Hugging Face Transformers library. Model is capable of generating video content based on the input text."
-        },
-        "output": "<<<domain>>>: Multimodal Text-to-Video\n<<<api_call>>>: pipeline('text-to-video', model='chavinlo/TempoFunk')\n<<<api_provider>>>: Hugging Face\n<<<explanation>>>: 1. استورد دالة pipline من مكتبة transformers المقدمة من Hugging Face.\n2. استخدم دالة pipline لإنشاء نموذج نص إلى فيديو.\n3. حدد النموذج 'chavinlo/TempoFunk' للتحميل، والذي صمم لتوليد محتوى الفيديو بناءً على النص المدخل.\n4. قم بتمرير وصف المشهد الذي ترغب في إنشاء فيديو له إلى النموذج المنشأ.\n5.لاحظ أن الناتج الذي يتم توليده من نموذج GPT سيكون وصفًا للفيديو وليس فيديو فعلي، لأن نماذج GPT تعتمد على إنتاج النصوص ولا يمكنها إنشاء مخرجات بصرية.\n"
-      }
-    ]
-  },
-  {
-    "instruction": "عميلنا يطوّر تطبيقاً لذوي الإعاقة البصرية. نحن بحاجة إلى تضمين وظيفة تحويل النص إلى كلام لمستخدمي هذا التطبيق.",
-    "instances": [
-      {
-        "API": {
-          "domain": "Audio Text-to-Speech",
-          "framework": "ESPnet",
-          "functionality": "Text-to-Speech",
-          "api_name": "kan-bayashi_ljspeech_vits",
-          "api_call": "pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits')",
-          "api_arguments": "text",
-          "python_environment_requirements": "transformers",
-          "example_code": "from transformers import pipeline; tts = pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits'); tts('Hello World')",
-          "performance": {
-            "dataset": "ljspeech",
-            "accuracy": "Not mentioned"
-          },
-          "description": "A Text-to-Speech model trained on the ljspeech dataset using the ESPnet toolkit. This model can be used to convert text input into synthesized speech."
-        },
-        "output": "<<<domain>>>: Audio Text-to-Speech\n<<<api_call>>>: pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits')\n<<<api_provider>>>: ESPnet\n<<<explanation>>>:1. أولاً، نقوم بتوريد الفئة الضرورية من حزمة transformers.\n2. ثم، قم بإنشاء pipeline لتحويل النص إلى كلام باستخدام النموذج المدرب مسبقاً 'espnet/kan-bayashi_ljspeech_vits'. تم تدريب هذا النموذج على مجموعة بيانات ljspeech ويمكن استخدامه لتحويل النص إلى كلام مركب.\n3. الآن، قم بتمرير أي نص إلى دالة pipeline هذه لتخليق صوت الكلام. بعد ذلك، يمكنك تشغيل الصوت أو دمجه في تطبيقك لمستخدمي ذوي الإعاقة البصرية.\n"
-      }
-    ]
-  },
-  {
-    "instruction": "حدد عمق الكائنات في صورة لروبوت ذاتي لتحديد المواقع والتنقل بشكل أفضل في بيئته.",
-    "instances": [
-      {
-        "API": {
-          "domain": "Computer Vision Depth Estimation",
-          "framework": "Hugging Face Transformers",
-          "functionality": "Transformers",
-          "api_name": "tiny-random-DPTForDepthEstimation",
-          "api_call": "DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')",
-          "api_arguments": [],
-          "python_environment_requirements": ["transformers"],
-          "example_code": "",
-          "performance": {
-            "dataset": "",
-            "accuracy": ""
-          },
-          "description": "A tiny random DPT model for depth estimation using Hugging Face Transformers library."
-        },
-        "output": "<<<domain>>>: Computer Vision Depth Estimation\n<<<api_call>>>: DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>(1) نحتاج إلى استيراد فئة 'DPTForDepthEstimation' من حزمة transformers.\n(2) بعد ذلك، سنقوم بتحميل النموذج المدرب مسبقًا 'hf-tiny-model-private/tiny-random-DPTForDepthEstimation'.\n(3) بعد تحميل النموذج، ندخل ملف الصورة إلى النموذج. يخرج النموذج ثم خريطة عمق للصورة التي يمكن أن تساعد الروبوت الذاتي في فهم عمق الكائنات في بيئته.\n"
-      }
-    ]
-  },
-  {
-    "instruction": "أنشئ قصة قصيرة تبدأ بـ \"كان ياما كان في أرض بعيدة\".",
-    "instances": [
-      {
-        "API": {
-          "domain": "Natural Language Processing Text Generation",
-          "framework": "Hugging Face Transformers",
-          "functionality": "Transformers",
-          "api_name": "lewtun/tiny-random-mt5",
-          "api_call": "AutoModel.from_pretrained('lewtun/tiny-random-mt5')",
-          "api_arguments": "text",
-          "python_environment_requirements": "transformers",
-          "example_code": "nlp('Once upon a time...')",
-          "performance": {
-            "dataset": "",
-            "accuracy": ""
-          },
-          "description": "A tiny random mt5 model for text generation"
-        },
-        "output": "<<<domain>>>: Natural Language Processing Text Generation\n<<<api_call>>>: AutoModel.from_pretrained('lewtun/tiny-random-mt5')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>:1. قم باستيراد الفئات المناسبة، وهي AutoModel وtokenizer من مكتبة المحولات.\n2. قم بتحميل نموذج إنشاء النص الذي تم تدريبه مسبقًا 'lewtun/tiny-random-mt5' باستخدام أسلوب from_pretrained لفئة AutoModel.\n3. قم بإنشاء قصة قصيرة تبدأ بـ \"كان ياما كان في أرض بعيدة\" عن طريق تمرير موجه البداية إلى النموذج الذي تم تحميله."
-      }
-    ]
-  },
-  {
-    "instruction": "لدينا نادي طلابي يجتمع كل أسبوعين للعب كرة القدم الافتراضية. زودهم بأداة للعب ضد وكيل التعلم الآلي.",
-    "instances": [
-      {
-        "API": {
-          "domain": "Reinforcement Learning",
-          "framework": "Stable-Baselines3",
-          "functionality": "LunarLander-v2",
-          "api_name": "araffin/ppo-LunarLander-v2",
-          "api_call": "PPO.load_from_hub('araffin/ppo-LunarLander-v2')",
-          "api_arguments": {
-            "checkpoint": "araffin/ppo-LunarLander-v2.zip"
-          },
-          "python_environment_requirements": [
-            "huggingface_sb3",
-            "stable_baselines3"
-          ],
-          "example_code": {
-            "load_model": "from huggingface_sb3 import load_from_hub\ncheckpoint = load_from_hub(araffin/ppo-LunarLander-v2, ppo-LunarLander-v2.zip)\nmodel = PPO.load(checkpoint)",
-            "evaluate": "from stable_baselines3.common.env_util import make_vec_env\nfrom stable_baselines3.common.evaluation import evaluate_policy\nenv = make_vec_env(LunarLander-v2, n_envs=1)\nmean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=20, deterministic=True)\nprint(fMean reward = {mean_reward:.2f} +/- {std_reward:.2f})"
-          },
-          "performance": {
-            "dataset": "LunarLander-v2",
-            "accuracy": "283.49 +/- 13.74"
-          },
-          "description": "This is a trained model of a PPO agent playing LunarLander-v2 using the stable-baselines3 library."
-        },
-        "output": "<<<domain>>>: Reinforcement Learning\n<<<api_call>>>: mlagents-load-from-hf --repo-id='Raiden-1001/poca-Soccerv7.1' --local-dir='./downloads'\n<<<api_provider>>>: Unity ML-Agents\n<<<explanation>>>: 1.تأكد من تثبيت Unity ML-Agents وحزمة ml-agents في بيئة Python الخاصة بك.\n2.قم بتنزيل نموذج وكيل poca المدرب 'Raiden-1001/poca-Soccerv7.1' باستخدام أمر استدعاء API المقدم. سيؤدي ذلك إلى حفظ الملفات في مجلد 'downloads'.\n3. ستحتاج إلى إنشاء ملف تكوين بتنسيق YAML (مثل your_configuration_file_path.yaml) يصف إعداد التدريب والمعلمات الفائقة المطلوبة لتشغيل الوكيل في بيئة SoccerTwos. LunarLander-v2.\n4.استخدم الأمر 'mlagents-learn' مع مسار ملف التكوين ومعرف التشغيل لبدء بيئة Unity حيث يمكن للطلاب لعب كرة القدم الافتراضية ضد خصم ذكاء اصطناعي.\n5. تأكد من استخدام العلامة '--resume' لبدء عملية التعلم من النموذج المقدم بواسطة API.\n"
-      }
-    ]
-  },
-  {
-    "instruction": "تقوم شركتنا ببناء منتج للبحث عن الوظائف، ونريد التنبؤ براتب الوظيفة بناءً على بعض مجموعات البيانات المتوفرة.",
-    "instances": [
-      {
-        "API": {
-          "domain": "Tabular Tabular Classification",
-          "framework": "Scikit-learn",
-          "functionality": "Joblib",
-          "api_name": "julien-c/skops-digits",
-          "api_call": "load('path_to_folder/sklearn_model.joblib')",
-          "api_arguments": {
-            "activation": "relu",
-            "alpha": 0.0001,
-            "batch_size": "auto",
-            "beta_1": 0.9,
-            "beta_2": 0.999,
-            "early_stopping": "False",
-            "epsilon": 1e-8,
-            "hidden_layer_sizes": "(100,)",
-            "learning_rate": "constant",
-            "learning_rate_init": 0.001,
-            "max_fun": 15000,
-            "max_iter": 200,
-            "momentum": 0.9,
-            "n_iter_no_change": 10,
-            "nesterovs_momentum": "True",
-            "power_t": 0.5,
-            "random_state": null,
-            "shuffle": "True",
-            "solver": "adam",
-            "tol": 0.0001,
-            "validation_fraction": 0.1,
-            "verbose": "False",
-            "warm_start": "False"
-          },
-          "python_environment_requirements": "scikit-learn, joblib",
-          "example_code": "This model can be loaded on the Inference API on-demand.",
-          "performance": {
-            "dataset": null,
-            "accuracy": null
-          },
-          "description": "A tabular classification model using the Scikit-learn framework and Joblib functionality. The model is trained with various hyperparameters and can be used for classification tasks."
-        },
-        "output": "<<<domain>>>: Tabular Tabular Classification\n<<<api_call>>>: load('path_to_folder/sklearn_model.joblib')\n<<<api_provider>>>: Scikit-learn\n<<<explanation>>>:1. سنستخدم نموذج تصنيف جدولي تم تدريبه مسبقًا من Scikit-Learn للتنبؤ براتب الوظيفة بناءً على الميزات المتوفرة في مجموعة البيانات.\n2. يمكن تحميل النموذج باستخدام وظيفة `load` الخاصة بحزمة joblib وتحديد المسار حيث يتم تخزين النموذج (في هذه الحالة، 'path_to_folder/sklearn_model.joblib').\n3. بمجرد تحميل النموذج، يمكن استخدامه لإجراء تنبؤات بشأن بيانات الميزات، مثل سنوات الخبرة، أو المسمى الوظيفي، أو الموقع، والتي سيتم استخدامها بعد ذلك لتقدير راتب الوظيفة.\n4. يمكن استخدام الراتب المتوقع كجزء من منتج البحث عن وظيفة لتزويد المستخدمين بتقدير للدخل المحتمل لقائمة وظائف معينة.\n"
-      }
-    ]
-  }
+    {
+        "instruction": "أنا مهتم بتوليد فيديو من وصف نصي لمشهد يصور الحيوانات في البرية. هل يمكنك مساعدتي في ذلك؟",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Multimodal Text-to-Video",
+                    "framework": "Hugging Face",
+                    "functionality": "Text-to-Video",
+                    "api_name": "chavinlo/TempoFunk",
+                    "api_call": "pipeline('text-to-video', model='chavinlo/TempoFunk')",
+                    "api_arguments": [
+                        "input_text"
+                    ],
+                    "python_environment_requirements": [
+                        "transformers"
+                    ],
+                    "example_code": "",
+                    "performance": {
+                        "dataset": "",
+                        "accuracy": ""
+                    },
+                    "description": "A Text-to-Video model using Hugging Face Transformers library. Model is capable of generating video content based on the input text."
+                },
+                "output": "<<<domain>>>: Multimodal Text-to-Video\n<<<api_call>>>: pipeline('text-to-video', model='chavinlo/TempoFunk')\n<<<api_provider>>>: Hugging Face\n<<<explanation>>>: 1. استورد دالة pipline من مكتبة transformers المقدمة من Hugging Face.\n2. استخدم دالة pipline لإنشاء نموذج نص إلى فيديو.\n3. حدد النموذج 'chavinlo/TempoFunk' للتحميل، والذي صمم لتوليد محتوى الفيديو بناءً على النص المدخل.\n4. قم بتمرير وصف المشهد الذي ترغب في إنشاء فيديو له إلى النموذج المنشأ.\n5.لاحظ أن الناتج الذي يتم توليده من نموذج GPT سيكون وصفًا للفيديو وليس فيديو فعلي، لأن نماذج GPT تعتمد على إنتاج النصوص ولا يمكنها إنشاء مخرجات بصرية.\n"
+            }
+        ]
+    },
+    {
+        "instruction": "عميلنا يطوّر تطبيقاً لذوي الإعاقة البصرية. نحن بحاجة إلى تضمين وظيفة تحويل النص إلى كلام لمستخدمي هذا التطبيق.",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Audio Text-to-Speech",
+                    "framework": "ESPnet",
+                    "functionality": "Text-to-Speech",
+                    "api_name": "kan-bayashi_ljspeech_vits",
+                    "api_call": "pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits')",
+                    "api_arguments": "text",
+                    "python_environment_requirements": "transformers",
+                    "example_code": "from transformers import pipeline; tts = pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits'); tts('Hello World')",
+                    "performance": {
+                        "dataset": "ljspeech",
+                        "accuracy": "Not mentioned"
+                    },
+                    "description": "A Text-to-Speech model trained on the ljspeech dataset using the ESPnet toolkit. This model can be used to convert text input into synthesized speech."
+                },
+                "output": "<<<domain>>>: Audio Text-to-Speech\n<<<api_call>>>: pipeline('text-to-speech', model='espnet/kan-bayashi_ljspeech_vits')\n<<<api_provider>>>: ESPnet\n<<<explanation>>>:1. أولاً، نقوم بتوريد الفئة الضرورية من حزمة transformers.\n2. ثم، قم بإنشاء pipeline لتحويل النص إلى كلام باستخدام النموذج المدرب مسبقاً 'espnet/kan-bayashi_ljspeech_vits'. تم تدريب هذا النموذج على مجموعة بيانات ljspeech ويمكن استخدامه لتحويل النص إلى كلام مركب.\n3. الآن، قم بتمرير أي نص إلى دالة pipeline هذه لتخليق صوت الكلام. بعد ذلك، يمكنك تشغيل الصوت أو دمجه في تطبيقك لمستخدمي ذوي الإعاقة البصرية.\n"
+            }
+        ]
+    },
+    {
+        "instruction": "تقوم شركتنا بتصميم مركبات ذاتية القيادة، ونحتاج إلى تقدير عمق الأشياء في المشهد الذي تلتقطه كاميراتنا.",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Computer Vision Depth Estimation",
+                    "framework": "Hugging Face Transformers",
+                    "functionality": "Transformers",
+                    "api_name": "tiny-random-DPTForDepthEstimation",
+                    "api_call": "DPTForDepthEstimation.from_pretrained('hf-tiny-model-private/tiny-random-DPTForDepthEstimation')",
+                    "api_arguments": [],
+                    "python_environment_requirements": [
+                        "transformers"
+                    ],
+                    "example_code": "",
+                    "performance": {
+                        "dataset": "",
+                        "accuracy": ""
+                    },
+                    "description": "A tiny random DPT model for depth estimation using Hugging Face Transformers library."
+                },
+                "output": "<<<domain>>>: Computer Vision Depth Estimation\n<<<api_call>>>: AutoModelForImageClassification.from_pretrained('sayakpaul/glpn-nyu-finetuned-diode-230131-041708')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>1. قم باستيراد الحزم المطلوبة، مثل 'AutoModelForImageClassification' من Transformers و'Image' من PIL لمعالجة بيانات الصورة.\n2. قم بتحميل النموذج الذي تم تدريبه مسبقًا 'sayakpaul/glpn-nyu-finetuned-diode-230131-041708' باستخدام الأسلوب 'AutoModelForImageClassification.from_pretrained'.\n3. تم ضبط هذا النموذج بدقة على مجموعة بيانات المجموعة الفرعية للصمام الثنائي لمهام تقدير العمق في سيناريوهات رؤية الكمبيوتر، مثل اكتشاف الكائنات في مشهد ما للمركبات المستقلة.\n4. يمكننا بعد ذلك استخدام النموذج لتقدير عمق الكائنات في صورة معينة، سواء تم التقاطها بواسطة الكاميرات الموجودة على السيارة أو تم تحميلها من ملف.\n"
+            }
+        ]
+    },
+    {
+        "instruction": "أنشئ قصة قصيرة تبدأ بـ \"كان ياما كان في أرض بعيدة\".",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Natural Language Processing Text Generation",
+                    "framework": "Hugging Face Transformers",
+                    "functionality": "Transformers",
+                    "api_name": "lewtun/tiny-random-mt5",
+                    "api_call": "AutoModel.from_pretrained('lewtun/tiny-random-mt5')",
+                    "api_arguments": "text",
+                    "python_environment_requirements": "transformers",
+                    "example_code": "nlp('Once upon a time...')",
+                    "performance": {
+                        "dataset": "",
+                        "accuracy": ""
+                    },
+                    "description": "A tiny random mt5 model for text generation"
+                },
+                "output": "<<<domain>>>: Natural Language Processing Text Generation\n<<<api_call>>>: AutoModel.from_pretrained('lewtun/tiny-random-mt5')\n<<<api_provider>>>: Hugging Face Transformers\n<<<explanation>>>:1. قم باستيراد الفئات المناسبة، وهي AutoModel وtokenizer من مكتبة المحولات.\n2. قم بتحميل نموذج إنشاء النص الذي تم تدريبه مسبقًا 'lewtun/tiny-random-mt5' باستخدام أسلوب from_pretrained لفئة AutoModel.\n3. قم بإنشاء قصة قصيرة تبدأ بـ \"كان ياما كان في أرض بعيدة\" عن طريق تمرير موجه البداية إلى النموذج الذي تم تحميله."
+            }
+        ]
+    },
+    {
+        "instruction": "لدينا نادي طلابي يجتمع كل أسبوعين للعب كرة القدم الافتراضية. زودهم بأداة للعب ضد وكيل التعلم الآلي.",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Reinforcement Learning",
+                    "framework": "Stable-Baselines3",
+                    "functionality": "LunarLander-v2",
+                    "api_name": "araffin/ppo-LunarLander-v2",
+                    "api_call": "PPO.load_from_hub('araffin/ppo-LunarLander-v2')",
+                    "api_arguments": {
+                        "checkpoint": "araffin/ppo-LunarLander-v2.zip"
+                    },
+                    "python_environment_requirements": [
+                        "huggingface_sb3",
+                        "stable_baselines3"
+                    ],
+                    "example_code": {
+                        "load_model": "from huggingface_sb3 import load_from_hub\ncheckpoint = load_from_hub(araffin/ppo-LunarLander-v2, ppo-LunarLander-v2.zip)\nmodel = PPO.load(checkpoint)",
+                        "evaluate": "from stable_baselines3.common.env_util import make_vec_env\nfrom stable_baselines3.common.evaluation import evaluate_policy\nenv = make_vec_env(LunarLander-v2, n_envs=1)\nmean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=20, deterministic=True)\nprint(fMean reward = {mean_reward:.2f} +/- {std_reward:.2f})"
+                    },
+                    "performance": {
+                        "dataset": "LunarLander-v2",
+                        "accuracy": "283.49 +/- 13.74"
+                    },
+                    "description": "This is a trained model of a PPO agent playing LunarLander-v2 using the stable-baselines3 library."
+                },
+                "output": "<<<domain>>>: Reinforcement Learning\n<<<api_call>>>: mlagents-load-from-hf --repo-id='Raiden-1001/poca-Soccerv7.1' --local-dir='./downloads'\n<<<api_provider>>>: Unity ML-Agents\n<<<explanation>>>: 1.تأكد من تثبيت Unity ML-Agents وحزمة ml-agents في بيئة Python الخاصة بك.\n2.قم بتنزيل نموذج وكيل poca المدرب 'Raiden-1001/poca-Soccerv7.1' باستخدام أمر استدعاء API المقدم. سيؤدي ذلك إلى حفظ الملفات في مجلد 'downloads'.\n3. ستحتاج إلى إنشاء ملف تكوين بتنسيق YAML (مثل your_configuration_file_path.yaml) يصف إعداد التدريب والمعلمات الفائقة المطلوبة لتشغيل الوكيل في بيئة SoccerTwos. LunarLander-v2.\n4.استخدم الأمر 'mlagents-learn' مع مسار ملف التكوين ومعرف التشغيل لبدء بيئة Unity حيث يمكن للطلاب لعب كرة القدم الافتراضية ضد خصم ذكاء اصطناعي.\n5. تأكد من استخدام العلامة '--resume' لبدء عملية التعلم من النموذج المقدم بواسطة API.\n"
+            }
+        ]
+    },
+    {
+        "instruction": "تقوم شركتنا ببناء منتج للبحث عن الوظائف، ونريد التنبؤ براتب الوظيفة بناءً على بعض مجموعات البيانات المتوفرة.",
+        "instances": [
+            {
+                "API": {
+                    "domain": "Tabular Tabular Classification",
+                    "framework": "Scikit-learn",
+                    "functionality": "Joblib",
+                    "api_name": "julien-c/skops-digits",
+                    "api_call": "load('path_to_folder/sklearn_model.joblib')",
+                    "api_arguments": {
+                        "activation": "relu",
+                        "alpha": 0.0001,
+                        "batch_size": "auto",
+                        "beta_1": 0.9,
+                        "beta_2": 0.999,
+                        "early_stopping": "False",
+                        "epsilon": 1e-8,
+                        "hidden_layer_sizes": "(100,)",
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.001,
+                        "max_fun": 15000,
+                        "max_iter": 200,
+                        "momentum": 0.9,
+                        "n_iter_no_change": 10,
+                        "nesterovs_momentum": "True",
+                        "power_t": 0.5,
+                        "random_state": null,
+                        "shuffle": "True",
+                        "solver": "adam",
+                        "tol": 0.0001,
+                        "validation_fraction": 0.1,
+                        "verbose": "False",
+                        "warm_start": "False"
+                    },
+                    "python_environment_requirements": "scikit-learn, joblib",
+                    "example_code": "This model can be loaded on the Inference API on-demand.",
+                    "performance": {
+                        "dataset": null,
+                        "accuracy": null
+                    },
+                    "description": "A tabular classification model using the Scikit-learn framework and Joblib functionality. The model is trained with various hyperparameters and can be used for classification tasks."
+                },
+                "output": "<<<domain>>>: Tabular Tabular Classification\n<<<api_call>>>: load('path_to_folder/sklearn_model.joblib')\n<<<api_provider>>>: Scikit-learn\n<<<explanation>>>:1. سنستخدم نموذج تصنيف جدولي تم تدريبه مسبقًا من Scikit-Learn للتنبؤ براتب الوظيفة بناءً على الميزات المتوفرة في مجموعة البيانات.\n2. يمكن تحميل النموذج باستخدام وظيفة `load` الخاصة بحزمة joblib وتحديد المسار حيث يتم تخزين النموذج (في هذه الحالة، 'path_to_folder/sklearn_model.joblib').\n3. بمجرد تحميل النموذج، يمكن استخدامه لإجراء تنبؤات بشأن بيانات الميزات، مثل سنوات الخبرة، أو المسمى الوظيفي، أو الموقع، والتي سيتم استخدامها بعد ذلك لتقدير راتب الوظيفة.\n4. يمكن استخدام الراتب المتوقع كجزء من منتج البحث عن وظيفة لتزويد المستخدمين بتقدير للدخل المحتمل لقائمة وظائف معينة.\n"
+            }
+        ]
+    }
 ]
