@@ -53,42 +53,55 @@ with open('data\inst_api_pairs.jsonl', 'r', encoding='utf-8') as f:
 
 # genearte
 
-for api_entry in api_entries[0:2]:
+for api_entry in api_entries[0:3]:
     
     sampled_seed_instructions = sample_from_seed(seed_task, 3)
-    user_message_content =("Generate (instruction-api pairs) and use the api as reference" )
-    print(user_message_content)
+    user_message_content =("Generate (instruction-api pairs) and use the api as reference\n" )
     api_entry = {"api":api_entry}
+    
+    
+    
+    inst_api_pairs=[]
 
     for instraction in sampled_seed_instructions:
         
-        print(instraction,api_entry)
+        # print(instraction,api_entry)
+        inst_api_pairs.append([instraction,api_entry])
         
-        
-        
-#         user_message_content =("Generate (instruction-api pairs) and use the api as reference" + api_entry)
     
+    # print(user_message_content, str(inst_api_pairs))
+    
+    
+    
+    
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+          {"role": "system","content": "You are an expert in API and instruction generation."},
+          {"role": "user", "content": (user_message_content, str(inst_api_pairs)) },
+      ],
+  )
+    
+    
+    
+    for choice in completion.choices[:10]:
+        gpt_instructions = choice.message.content
+        
+        with open('generated.jsonl', 'a', encoding="utf-8") as ft:
+            ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
+            ft.close()
+            
+            # print(gpt_instructions, sep="\n")
+
+        
+        
+
+
+        
+        
+            
    
-#     prompts = [user_message_content,data_to_write]
     
-#     completion = client.chat.completions.create(
-#       model="gpt-3.5-turbo",
-#       messages=[
-#           {"role": "system","content": "You are an expert in API usage and instruction generation."},
-#           {"role": "user", "content": user_message_content },
-#       ],
-#   )
-    
-    
-#     for choice in completion.choices[:10]:
-        
-#         gpt_instructions = choice.message.content
-#         with open('generated.jsonl', 'a', encoding="utf-8") as ft:
-#             ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
-#             ft.close()
-            
-            
-#             print(gpt_instructions, sep="\n")
 
 
 
