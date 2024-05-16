@@ -20,6 +20,9 @@ def sample_from_seed(seed_tasks, num_samples):
     """Sample from the seed tasks."""
     return random.sample(seed_tasks, min(num_samples, len(seed_tasks)))
 
+
+
+
 if __name__ == "__main__":
 
     seed_tasks_path = "data\seed.jsonl"
