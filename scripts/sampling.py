@@ -43,10 +43,3 @@ if __name__ == "__main__":
                 f.write(json.dumps(inst_api_pairs, ensure_ascii=False) + "\n")
             
             # print(inst_api_pairs)
-            
-        
-
-                
-        
-        
-
