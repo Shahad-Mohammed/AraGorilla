@@ -53,10 +53,10 @@ with open('data\inst_api_pairs.jsonl', 'r', encoding='utf-8') as f:
 
 # genearte
 
-for api_entry in api_entries[0:3]:
+for api_entry in api_entries:
     
     sampled_seed_instructions = sample_from_seed(seed_task, 3)
-    user_message_content =("Generate (instruction-api pairs) and use the api as reference\n" )
+    user_message_content =("Generate 10 new (instruction-api pairs) and use the api provided as reference\n")
     api_entry = {"api":api_entry}
     
     
@@ -78,7 +78,7 @@ for api_entry in api_entries[0:3]:
       model="gpt-3.5-turbo",
       messages=[
           {"role": "system","content": "You are an expert in API and instruction generation."},
-          {"role": "user", "content": (user_message_content, str(inst_api_pairs)) },
+          {"role": "user", "content": (user_message_content +" "+str(inst_api_pairs)) },
       ],
   )
     
