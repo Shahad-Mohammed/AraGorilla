@@ -26,48 +26,90 @@ def sample_from_seed(seed_tasks, num_samples):
     """Sample from the seed tasks."""
     return random.sample(seed_tasks, min(num_samples, len(seed_tasks)))
 
+# Load lines from another file
+def load_lines(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        lines = [line.strip() for line in f]
+    return lines
+
 
 # genearte
 
 
 api_file = "data\huggingface_api.jsonl"
-seed_tasks_path = "seed_6.jsonl"
-
-samples_api_file = "samples_api_file.jsonl"
-
-
-seed_entries = load_seed_tasks(seed_tasks_path)
 api_entries = load_api_entries(api_file)
 
-gpt_instructions = []
 
-for api_entry in api_entries[5]:
+inst_api_path = "data\inst_api_pairs.jsonl"
+inst_api_pairs = load_seed_tasks(inst_api_path)
+
+
+
+
+lines = load_lines('data\inst_api_pairs.jsonl')
+
+
+print(lines)
+
+
+
+# # Combine each set of three lines with an API entry
+# combined_data = []
+# for i in range(0, len(api_entries), 937):
+#     for j in range(i, min(i + 937, len(api_entries))):
+#         combined_entry = {
+#             "api": api_entries[j],
+#             "lines": [lines[i], lines[i+1], lines[i+2]]
+#         }
+#         combined_data.append(combined_entry)
+
+
+# # Write combined data to a new JSONL file
+# with open('test_prompt.jsonl', "w", encoding="utf-8") as f:
+#     for entry in combined_data:
+#         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+# print("Combined data written to test_prompt.jsonl")
+
+
+
+
+# for api_entry in api_entries[0:1]:
     
-    user_message_content =("""using these 3 (instructon-instance) pairs for the given API with this format : {"domain": "", "framework": "", "functionality": "", "api_name": "", "api_call": "", "api_arguments": "", "python_environment_requirements": "", "example_code": "", "performance": {"dataset": "", "accuracy": ""}, "description": ""} Generate 10 (instructon-instance) pairs and make sure the instructions and exeplination in Arabic also make the results like this format : {"instruction":"","instances":[{"API":{"domain":"","framework":"","functionality":"","api_name":"","api_call":"","api_arguments":,"python_environment_requirements":,"example_code":"","performance":{"dataset":"","accuracy":""},"description":""},"output":"<<<domain>>>:\n<<<api_call>>>: \n<<<api_provider>>>: \n<<<explanation>>>:\n"}]} note: (don't use the API name when generate instrutions)""")
+#     user_message_content =("""
+#                            Generate 10 (instruction-api pairs) and use the api as reference from these data 
+#                            """)
     
-    sampled_seed_instructions = sample_from_seed(seed_entries, 3)
-    data_to_write = [sampled_seed_instructions,api_entry]
-    
-    prompts = [user_message_content,data_to_write]
-    
-    completion = client.chat.completions.create(
-      model="gpt-3.5-turbo",
-      messages=[
-          {"role": "system","content": "You are exampels generator"},
-          {"role": "user", "content": str(prompts) },
-      ],
-  )
-    
-    
-    for choice in completion.choices[:10]:
+#     for data in inst_api_pairs:
+#         # print(data,api_entry)
+#         a  = [data,api_entry]
         
-        gpt_instructions = choice.message.content
-        with open('generated.jsonl', 'a', encoding="utf-8") as ft:
-            ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
-            ft.close()
+        
+#         with open('test_prompt.jsonl', 'w', encoding="utf-8") as ft:
+#             ft.write(json.dumps(a,ensure_ascii=False) + '\n')
+        
+        
+          
+#     prompts = [user_message_content,data_to_write]
+    
+#     completion = client.chat.completions.create(
+#       model="gpt-3.5-turbo",
+#       messages=[
+#           {"role": "system","content": "You are exampels generator"},
+#           {"role": "user", "content": str(prompts) },
+#       ],
+#   )
+    
+    
+#     for choice in completion.choices[:10]:
+        
+#         gpt_instructions = choice.message.content
+#         with open('generated.jsonl', 'a', encoding="utf-8") as ft:
+#             ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
+#             ft.close()
             
             
-            print(gpt_instructions, sep="\n")
+#             print(gpt_instructions, sep="\n")
 
 
 
