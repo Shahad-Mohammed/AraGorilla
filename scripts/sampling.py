@@ -1,19 +1,11 @@
 import json
 import random
 
-
-def load_seed_tasks(seed_tasks_path):
-    """Load seed tasks from the specified JSONL file."""
-    with open(seed_tasks_path, encoding="utf-8") as f:
+def load(file_path):
+    """Load from the specified JSONL file."""
+    with open(file_path, encoding="utf-8") as f:
         seed_tasks = [json.loads(line) for line in f]
     return seed_tasks
-
-
-def load_api_entries(api_file):
-    """Load API entries from the specified JSONL file."""
-    with open(api_file, "r", encoding="utf-8") as f:
-        api_entries = [json.loads(line.strip()) for line in f]
-    return api_entries
 
 
 def sample_from_seed(seed_tasks, num_samples):
@@ -22,15 +14,14 @@ def sample_from_seed(seed_tasks, num_samples):
 
 
 
-
 if __name__ == "__main__":
 
     seed_tasks_path = "data\seed.jsonl"
-    seed_tasks = load_seed_tasks(seed_tasks_path)
+    seed_tasks = load(seed_tasks_path)
     
     
     api_entries_path = 'data\huggingface_api.jsonl'
-    api_entries = load_api_entries(api_entries_path)
+    api_entries = load(api_entries_path)
 
 
     print(f"Loaded {len(seed_tasks)} human-written seed instructions")

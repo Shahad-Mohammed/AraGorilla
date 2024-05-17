@@ -10,12 +10,10 @@ client = OpenAI(
 )
 
 def load(file_path):
-    """Load seed tasks from the specified JSONL file."""
+    """Load from the specified JSONL file."""
     with open(file_path, encoding="utf-8") as f:
         seed_tasks = [json.loads(line) for line in f]
     return seed_tasks
-
-
 
 def sample_from_seed(seed_tasks, num_samples):
     """Sample from the seed tasks."""
@@ -103,34 +101,6 @@ for api_entry in api_entries[130:]:
    
     
 
-
-
-    
-
-
-
-
-
-    # # user_message_content += data_to_write
-
-    # print(user_message_content)
-    # print("----------------------------------------------------------")
-
-    # with open("generate_file.json", "a", encoding="utf-8") as f:
-    #     f.write(json.dumps(user_message_content, ensure_ascii=False) + "\n")
-    #     f.write(json.dumps(data_to_write, ensure_ascii=False) + "\n")
-
-
-
-
-
-
-
-# def save_sampled_instructions(sampled_instructions, output_file):
-#     """Save sampled instructions to a JSONL file."""
-#     with open(output_file,"w", encoding="utf-8") as f:
-#         for instruction in sampled_instructions:
-#             f.write(json.dumps(instruction,ensure_ascii=False) + "\n")
 
 
 
