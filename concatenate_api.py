@@ -18,7 +18,7 @@ def save_api_entries_with_samples(data_to_write, samples_api_file):
 
 if __name__ == "__main__":
 
-    api_file = "data\huggingface_api_2.jsonl"
+    api_file = r"data\huggingface_api_2.jsonl"
     seed_tasks_path = "seed_6.jsonl"
 
     samples_api_file = "samples_api_file.jsonl"
