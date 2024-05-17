@@ -53,7 +53,7 @@ with open('data\inst_api_pairs.jsonl', 'r', encoding='utf-8') as f:
 
 # genearte
 
-for api_entry in api_entries:
+for api_entry in api_entries[130:]:
     
     sampled_seed_instructions = sample_from_seed(seed_task, 3)
     user_message_content =("Generate 10 new (instruction-api pairs) and use the api provided as reference\n")
