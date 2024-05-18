@@ -29,11 +29,32 @@ def filter_invalid_instances(instances):
 
 #Filltering Incomplete instances:
 
+####Function to Check all required components are exsist
+def check_required_components(input_string):
+    Complete_instructions = []
+
+    # List of required components
+    required_components = [
+        'instruction', 'api', 'domain', 'framework', 'functionality', 
+        'api_name', 'api_call', 'api_arguments', 'python_environment_requirements', 
+        'example_code', 'performance', 'description'
+    ]
+    missing_components = [component for component in required_components if component not in input_string]
+    if not(missing_components):
+      Complete_instructions.append(input_string)
+
+    return Complete_instructions
+
+
+
 #Filltering Arabic instructions:
 
 
 #Open Generateion (before filltering) file:
 with open('data/pool2.jsonl') as f:
+###Open Generateion (before filltering) file:
+
+ with open('/content/generated.jsonl') as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
 
 # Function to extract and print instructions
@@ -77,8 +98,14 @@ for i in range(len(gpt_instructions_before_filltering[:2])):
 #                                                                                                                      #
 ########################################################################################################################
 
+#Complete Instructions
+Complete_instructions = []
+for ins in (gpt_instructions_before_filltering[:8]):
+      if(check_required_components(ins)):
+        Complete_instructions.append(ins)
 
-gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(gpt_instructions))
+
+gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(Complete_instructions))
 
 scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=False)
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
