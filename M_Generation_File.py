@@ -29,7 +29,6 @@ def sample_from_seed(seed_tasks, num_samples):
 
 # genearte
 
-
 api_file = "data\huggingface_api.jsonl"
 seed_tasks_path = "seed_6.jsonl"
 
@@ -75,26 +74,14 @@ for api_entry in api_entries[5]:
             print(gpt_instructions, sep="\n")
 
 
+# # user_message_content += data_to_write
 
-    
+# print(user_message_content)
+# print("----------------------------------------------------------")
 
-
-
-
-
-    # # user_message_content += data_to_write
-
-    # print(user_message_content)
-    # print("----------------------------------------------------------")
-
-    # with open("generate_file.json", "a", encoding="utf-8") as f:
-    #     f.write(json.dumps(user_message_content, ensure_ascii=False) + "\n")
-    #     f.write(json.dumps(data_to_write, ensure_ascii=False) + "\n")
-
-
-
-
-
+# with open("generate_file.json", "a", encoding="utf-8") as f:
+#     f.write(json.dumps(user_message_content, ensure_ascii=False) + "\n")
+#     f.write(json.dumps(data_to_write, ensure_ascii=False) + "\n")
 
 
 # def save_sampled_instructions(sampled_instructions, output_file):
@@ -102,6 +89,3 @@ for api_entry in api_entries[5]:
 #     with open(output_file,"w", encoding="utf-8") as f:
 #         for instruction in sampled_instructions:
 #             f.write(json.dumps(instruction,ensure_ascii=False) + "\n")
-
-
-
