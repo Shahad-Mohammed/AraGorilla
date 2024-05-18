@@ -26,3 +26,42 @@ def filter_invalid_instances(instances):
             continue
         filtered_instances.append(instance)
     return filtered_instances
+
+
+#Filltering Incomplete instances:
+
+#Filltering Arabic instructions:
+#Open Generateion (before filltering) file:
+with open('/content/generated.jsonl') as f:
+    gpt_instructions_before_filltering = [json.loads(line) for line in f]
+
+# Function to extract and print instructions
+def extract_instructions(text):
+    instructions = []
+
+    # Define regex patterns to match instructions
+    pattern1 = re.compile(r'Instruction:\s*(.*?)\n\s*API:', re.DOTALL)
+    pattern2 = re.compile(r"'instruction':\s*'(.*?)'", re.DOTALL)
+    
+    # Find all matches for each pattern
+    instructions1 = pattern1.findall(text)
+    instructions2 = pattern2.findall(text)
+    
+    # Print all instructions
+    for instruction in instructions1 + instructions2:
+      instructions.append(instruction.strip())
+    return instructions
+
+#Function to Transelate en to ar:
+def translate_arabic_to_english(text):
+    translated_text = translate(text, 'ar', 'auto')
+    return translated_text
+
+
+for i in range(len(gpt_instructions_before_filltering[:2])):
+  instrs = extract_instructions(str(gpt_instructions_before_filltering[i]))
+  for ins in instrs:
+    if detect(ins) != 'ar':
+      res = translate_arabic_to_english(ins)
+      print(res)
+      print()
