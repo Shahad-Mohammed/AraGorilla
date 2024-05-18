@@ -94,9 +94,14 @@ for i in range(len(gpt_instructions_before_filltering[:2])):
 #                                                                                                                      #
 ########################################################################################################################
 
+#Complete Instructions
+Complete_instructions = []
+for ins in (gpt_instructions_before_filltering[:8]):
+      if(check_required_components(ins)):
+        Complete_instructions.append(ins)
 
 
-gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(gpt_instructions))
+gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(Complete_instructions))
 
 scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=False)
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
