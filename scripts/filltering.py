@@ -30,8 +30,26 @@ def filter_invalid_instances(instances):
 
 #Filltering Incomplete instances:
 
+####Function to Check all required components are exsist
+def check_required_components(input_string):
+    Complete_instructions = []
+
+    # List of required components
+    required_components = [
+        'instruction', 'api', 'domain', 'framework', 'functionality', 
+        'api_name', 'api_call', 'api_arguments', 'python_environment_requirements', 
+        'example_code', 'performance', 'description'
+    ]
+    missing_components = [component for component in required_components if component not in input_string]
+    if not(missing_components):
+      Complete_instructions.append(input_string)
+
+    return Complete_instructions
+
+
+
 #Filltering Arabic instructions:
-#Open Generateion (before filltering) file:
+###Open Generateion (before filltering) file:
 with open('/content/generated.jsonl') as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
 
