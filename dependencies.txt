@@ -1,0 +1,6 @@
+!pip install --upgrade openai
+!pip install -r requirements.txt
+!pip install rouge-score
+!pip install translators
+!pip install mtranslate
+!pip install langdetect
