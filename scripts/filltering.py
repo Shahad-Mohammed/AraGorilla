@@ -65,3 +65,29 @@ for i in range(len(gpt_instructions_before_filltering[:2])):
       res = translate_arabic_to_english(ins)
       print(res)
       print()
+
+
+
+########################################################################################################################
+#                                                                                                                      #
+#                                                                                                                      #
+#                                          FILLTERING IMPLEMETION                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+########################################################################################################################
+
+
+gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(gpt_instructions))
+
+scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=False)
+scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
+
+for i in gpt_instructions_vaild_notdublicated:
+  i_score = scorer.score(str_store, i)
+  if ( i_score < 0.7 for i in gpt_instructions):
+   # Check if instruction is in Arabic Language
+   # Check if instruction is complete
+    # Appending the generated inst
+    with open('generated_Insts.jsonl', 'a', encoding="utf-8") as f:
+        f.write(json.dumps(i) + '\n')
+        f.close()
