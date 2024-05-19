@@ -2,8 +2,7 @@ import re
 import json
 from langdetect import detect
 from mtranslate import translate
-
-
+from rouge_score import rouge_scorer
 
 #Filltering Methods Duplication, Invalid:
 
@@ -49,8 +48,13 @@ def check_required_components(input_string):
 
 
 #Filltering Arabic instructions:
+
+
+#Open Generateion (before filltering) file:
+with open('data/pool2.jsonl') as f:
 ###Open Generateion (before filltering) file:
-with open('/content/generated.jsonl') as f:
+
+ with open('/content/generated.jsonl') as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
 
 # Function to translate
