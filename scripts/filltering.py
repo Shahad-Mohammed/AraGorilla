@@ -2,8 +2,7 @@ import re
 import json
 from langdetect import detect
 from mtranslate import translate
-
-
+from rouge_score import rouge_scorer
 
 #Filltering Methods Duplication, Invalid:
 
@@ -49,31 +48,47 @@ def check_required_components(input_string):
 
 
 #Filltering Arabic instructions:
+
+
+#Open Generateion (before filltering) file:
+with open('data/pool2.jsonl') as f:
 ###Open Generateion (before filltering) file:
-with open('/content/generated.jsonl') as f:
+
+ with open('/content/generated.jsonl') as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
 
-# Function to extract and print instructions
-def extract_instructions(text):
-    instructions = []
-
-    # Define regex patterns to match instructions
-    pattern1 = re.compile(r'Instruction:\s*(.*?)\n\s*API:', re.DOTALL)
-    pattern2 = re.compile(r"'instruction':\s*'(.*?)'", re.DOTALL)
-    
-    # Find all matches for each pattern
-    instructions1 = pattern1.findall(text)
-    instructions2 = pattern2.findall(text)
-    
-    # Print all instructions
-    for instruction in instructions1 + instructions2:
-      instructions.append(instruction.strip())
-    return instructions
-
-#Function to Transelate en to ar:
-def translate_arabic_to_english(text):
+# Function to translate
+def translate_en_to_ar(text):
     translated_text = translate(text, 'ar', 'auto')
     return translated_text
+
+# Function to extract and translate instructions
+def extract_instructions_and_translate_it(inst):
+      # Define regex patterns to match instructions
+  pattern1 = re.compile(r'Instruction:\s*(.*?)\n\s*API:', re.DOTALL)
+  pattern2 = re.compile(r"'instruction':\s*'(.*?)'", re.DOTALL)
+      
+      # Find all matches for each pattern
+  instructions1 = pattern1.findall(inst)
+  instructions2 = pattern2.findall(inst)
+
+      # Print all instructions
+  instruction = instructions1 + instructions2
+  instruction_content = str(instruction).strip("[]")
+
+  arabic_sure_instruction = ""
+
+  if instruction_content:
+    if detect(instruction_content) != 'ar':
+      arabic_sure_instruction = inst.replace(instruction_content, translate_en_to_ar(instruction_content))
+    else:
+      arabic_sure_instruction = inst
+  else:
+    # Handle the case where instruction_content is empty
+    # For example, you could raise an exception or return a default value
+    pass
+
+  return arabic_sure_instruction
 
 
 for i in range(len(gpt_instructions_before_filltering[:2])):
