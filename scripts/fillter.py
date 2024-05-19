@@ -30,7 +30,8 @@ def extract_instructions(text):
     
     # Print all instructions
     for instruction in instructions1 + instructions2+instructions3:
-      instructions.append(instruction.strip())
+      if instruction !="'":
+         instructions.append(instruction.strip())
     return instructions
 
 
@@ -70,3 +71,4 @@ def similarity(list_str,sentence):
    averg_similarity = similarity_total/len(list_str)
   
    print("Cosine similarity:", averg_similarity)
+
