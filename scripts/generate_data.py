@@ -86,10 +86,9 @@ for api_entry in api_entries[0:1]:
          instruction = {"instruction": i.replace("'","")}
         #  instruction_dicts.append(instruction)
          print(instruction)
-
-        #  with open('seed.jsonl', 'a', encoding="utf-8") as fw:
-        #     fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
-        #     fw.close()
+         with open('data/seed.jsonl', 'a', encoding="utf-8") as fw:
+            fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
+            fw.close()
 
     
 
