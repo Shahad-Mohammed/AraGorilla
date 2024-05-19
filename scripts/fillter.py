@@ -32,19 +32,19 @@ def translate_arabic_to_english(text):
     return translated_text
 
 
-for i in range(len(gpt_instructions_before_filltering)):
-    instrs = extract_instructions(str(gpt_instructions_before_filltering[i]))
-    for ins in instrs:
-        # Assuming ins is a tuple, extract the first element
-        if isinstance(ins, tuple):
-            ins_text = ins[0]
-        else:
-            ins_text = ins.strip('"') 
+# for i in range(len(gpt_instructions_before_filltering)):
+#     instrs = extract_instructions(str(gpt_instructions_before_filltering[i]))
+#     for ins in instrs:
+#         # Assuming ins is a tuple, extract the first element
+#         if isinstance(ins, tuple):
+#             ins_text = ins[0]
+#         else:
+#             ins_text = ins.strip('"') 
         
-        if detect(ins_text) == 'en':
-            res = translate_arabic_to_english(ins_text).strip('"') 
-            instruction = {"instruction": res}
-        else:
-            instruction = {"instruction": ins_text}
+#         if detect(ins_text) == 'en':
+#             res = translate_arabic_to_english(ins_text).strip('"') 
+#             instruction = {"instruction": res}
+#         else:
+#             instruction = {"instruction": ins_text}
         
-    print(instruction)
+#     print(instruction)
