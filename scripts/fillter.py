@@ -2,6 +2,9 @@ import re
 import json
 from langdetect import detect
 from mtranslate import translate
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 
 # #Open Generateion (before filltering) file:
@@ -27,7 +30,8 @@ def extract_instructions(text):
     
     # Print all instructions
     for instruction in instructions1 + instructions2+instructions3:
-      instructions.append(instruction.strip())
+      if instruction !="'":
+         instructions.append(instruction.strip())
     return instructions
 
 
@@ -53,3 +57,18 @@ def translate_arabic_to_english(text):
 #             instruction = {"instruction": ins_text}
         
 #     print(instruction)
+
+def similarity(list_str,sentence):
+   averg_similarity = 0
+   similarity_total=0
+
+   for i in list_str:
+    sentences = [i, sentence]
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(sentences)
+    similarity_total += cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
+
+   averg_similarity = similarity_total/len(list_str)
+  
+   print("Cosine similarity:", averg_similarity)
+
