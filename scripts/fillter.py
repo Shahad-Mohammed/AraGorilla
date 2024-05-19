@@ -15,13 +15,18 @@ def extract_instructions(text):
     # Define regex patterns to match instructions
     pattern1 = re.compile(r'Instruction:\s*(.*?)\n\s*API:', re.DOTALL)
     pattern2 = re.compile(r"'instruction':\s*'(.*?)'", re.DOTALL)
+    pattern3 = re.compile(r'\d+\. instruction: (.+?)(?=api:|$)', re.DOTALL)
+
+
     
     # Find all matches for each pattern
     instructions1 = pattern1.findall(text)
     instructions2 = pattern2.findall(text)
+    instructions3 = pattern3.findall(text)
+
     
     # Print all instructions
-    for instruction in instructions1 + instructions2:
+    for instruction in instructions1 + instructions2+instructions3:
       instructions.append(instruction.strip())
     return instructions
 
