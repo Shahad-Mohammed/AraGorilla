@@ -53,6 +53,27 @@ def check_required_components(input_string):
 with open('/content/generated.jsonl') as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
 
+
+#######################################################################################################################
+
+single_gpt_instances = []
+
+# Iterate through the list of censuses
+for census in gpt_instructions_before_filltering:
+    # Split the census string by newline characters to separate individual censuses
+    census_parts = census.split('\n\n')
+    
+    # Iterate through the separated parts
+    for part in census_parts:
+        # Append each part to the censuses list
+        single_gpt_instances.append(part.strip())
+
+# Now censuses list contains each census as a separate string element
+print(len(single_gpt_instances))
+
+###########################################################################################################################
+
+
 # Function to translate
 def translate_en_to_ar(text):
     translated_text = translate(text, 'ar', 'auto')
