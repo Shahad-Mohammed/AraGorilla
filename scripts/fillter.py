@@ -5,9 +5,8 @@ from mtranslate import translate
 
 
 #Open Generateion (before filltering) file:
-with open('data/pool2.jsonl') as f:
+with open('data/pool2.jsonl',encoding="utf-8") as f:
     gpt_instructions_before_filltering = [json.loads(line) for line in f]
-    
     
 # Function to extract and print instructions
 def extract_instructions(text):
@@ -34,11 +33,18 @@ def translate_arabic_to_english(text):
 
 
 for i in range(len(gpt_instructions_before_filltering)):
-  instrs = extract_instructions(gpt_instructions_before_filltering[i])
-  for ins in instrs:
-    if detect(ins) != 'ar':
-      res = translate_arabic_to_english(ins).strip('"')   
-      instruction_entry = {"instruction": res}
-      with open('data/seed.jsonl', "a", encoding="utf-8") as f:
-        json.dump(instruction_entry, f, ensure_ascii=False)
-        f.write("\n")
+    instrs = extract_instructions(str(gpt_instructions_before_filltering[i]))
+    for ins in instrs:
+        # Assuming ins is a tuple, extract the first element
+        if isinstance(ins, tuple):
+            ins_text = ins[0]
+        else:
+            ins_text = ins.strip('"') 
+        
+        if detect(ins_text) == 'en':
+            res = translate_arabic_to_english(ins_text).strip('"') 
+            instruction = {"instruction": res}
+        else:
+            instruction = {"instruction": ins_text}
+        
+    print(instruction)
