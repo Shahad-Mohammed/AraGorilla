@@ -47,23 +47,23 @@ for api_entry in api_entries[0:1]:
                 
     # print(user_message_content)
 
-    # completion = client.chat.completions.create(
-    #     model="gpt-3.5-turbo",
-    #     messages=[
-    #         {"role": "system", "content": "You are an expert in API and instruction generation."},
-    #         {"role": "user", "content": user_message_content},
-    #     ],
-    # )
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are an expert in API and instruction generation."},
+            {"role": "user", "content": user_message_content},
+        ],
+    )
 
-    # for choice in completion.choices:
-    #     gpt_instructions = choice.message.content
-    #     with open(r'data\pool2.jsonl', 'a', encoding="utf-8") as ft:
-    #         ft.write(json.dumps(gpt_instructions, ensure_ascii=False) + '\n')
-    #         ft.close()
+    for choice in completion.choices:
+        gpt_instructions = choice.message.content
+        with open(r'data\pool2.jsonl', 'a', encoding="utf-8") as ft:
+            ft.write(json.dumps(gpt_instructions, ensure_ascii=False) + '\n')
+            ft.close()
             
             
-        # with open('data/pool2.jsonl',encoding="utf-8") as f:
-        #     gpt_instructions_before_filltering = [json.loads(line) for line in f] 
+        with open('data/pool2.jsonl',encoding="utf-8") as f:
+            gpt_instructions_before_filltering = [json.loads(line) for line in f] 
             
             
             # print(gpt_instructions)
@@ -87,14 +87,13 @@ for api_entry in api_entries[0:1]:
         #  instruction_dicts.append(instruction)
          print(instruction)
 
+        #  with open('seed.jsonl', 'a', encoding="utf-8") as fw:
+        #     fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
+        #     fw.close()
 
     
 
     # print(instruction_dicts)
-
-
-
-
                 
         # for ins in instrs:
             
