@@ -6,7 +6,7 @@ import random
 
 from langdetect import detect
 from mtranslate import translate
-from fillter import extract_instructions,translate_arabic_to_english
+from fillter import extract_instructions,translate_arabic_to_english,similarity
 
 # Create the OpenAI client with the API key
 client = OpenAI(
@@ -28,9 +28,13 @@ api_file_path = "data\huggingface_api.jsonl"
 api_entries = load(api_file_path)
 
 
-# Generate
+
+ 
+
+#Generate
 for api_entry in api_entries[0:1]:
     sampled_seed_instructions = random.sample(seed_task, 3)
+ 
     
     inst_api_pairs = []
     for instruction in sampled_seed_instructions:
@@ -70,10 +74,14 @@ for api_entry in api_entries[0:1]:
     # print(trans)
 
     for i in trans.split(',') :
+        if i != "''":
          instruction = {"instruction": i.replace("'","")}
         #  print(instruction)
          with open('data/seed.jsonl', 'a', encoding="utf-8") as fw:
-            fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
-            fw.close()
+                fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
+                fw.close()
+        else:
+            None
+
 
     

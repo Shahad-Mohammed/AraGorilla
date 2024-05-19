@@ -130,3 +130,11 @@ for i in gpt_instructions_vaild_notdublicated:
     with open('generated_Insts.jsonl', 'a', encoding="utf-8") as f:
         f.write(json.dumps(i) + '\n')
         f.close()
+
+#similarty code
+
+# sampled_seed_instructions = random.sample(seed_task, 3)
+# sentences = [item['instruction'] for item in sampled_seed_instructions]
+# for sentence in sentences:
+#     print(sentence)
+#     similarity(sentences,sentence) 
