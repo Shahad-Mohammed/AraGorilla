@@ -4,9 +4,9 @@ from langdetect import detect
 from mtranslate import translate
 
 
-#Open Generateion (before filltering) file:
-with open('data/pool2.jsonl',encoding="utf-8") as f:
-    gpt_instructions_before_filltering = [json.loads(line) for line in f]
+# #Open Generateion (before filltering) file:
+# with open('data/pool2.jsonl',encoding="utf-8") as f:
+#     gpt_instructions_before_filltering = [json.loads(line) for line in f]
     
 # Function to extract and print instructions
 def extract_instructions(text):
