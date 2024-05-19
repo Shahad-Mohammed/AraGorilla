@@ -111,18 +111,19 @@ for ins in (gpt_instructions_before_filltering[:8]):
       if(check_required_components(ins)):
         Complete_instructions.append(ins)
 
+#Check Arabic Instructions
+nice_instructions = []
+for instance in Complete_instructions:
+  nice_instructions.append(extract_instructions_and_translate_it(instance))
 
-gpt_instructions_vaild_notdublicated = filter_invalid_instances(filter_duplicate_instances(Complete_instructions))
 
 scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=False)
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
 
-for i in gpt_instructions_vaild_notdublicated:
-  i_score = scorer.score(str_store, i)
-  if ( i_score < 0.7 for i in gpt_instructions):
-   # Check if instruction is in Arabic Language
-   # Check if instruction is complete
+for i in nice_instructions:
+  i_score = scorer.score(i,str(Pool))
+  if ( i_score["rougeL"].precision < 0.7):    
     # Appending the generated inst
     with open('generated_Insts.jsonl', 'a', encoding="utf-8") as f:
-        f.write(json.dumps(i) + '\n')
+        f.write(json.dumps(i, ensure_ascii=False) + '\n')
         f.close()
