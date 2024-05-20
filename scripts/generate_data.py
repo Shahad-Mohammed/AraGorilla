@@ -28,9 +28,8 @@ api_file_path = "data\huggingface_api.jsonl"
 api_entries = load(api_file_path)
 
 
-
 #Generate
-for api_entry in api_entries:
+for api_entry in api_entries[209:]:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 
@@ -71,15 +70,22 @@ for api_entry in api_entries:
             
     instrs = extract_instructions(gpt_instructions)
     trans = translate_arabic_to_english((str(instrs).strip('"')).strip('[]') )
-    # print(trans)
 
     for i in trans.split(',') :
         if i != "''":
-         instruction = {"instruction": i.replace("'","")}
-         instruction_str = str(instruction)+", "+str(api_entry)
-         with open('data/seed.jsonl', 'a', encoding="utf-8") as fw:
-                fw.write(json.dumps(str(instruction)+" "+str(api_entry), ensure_ascii=False) + '\n')
+            
+            llama_format = "<s>[INST]"+ str(i.replace("'","")).strip("{}") +"? [/INST]"+ str(api_entry).strip("{{}}") +" </s>"
+            with open('data/llama_format.jsonl', 'a', encoding="utf-8") as fw:
+                fw.write(json.dumps(llama_format, ensure_ascii=False) + '\n')
+                fw.close()  
+                
+                
+                
+            instruction = {"instruction": i.replace("'","")}
+            with open('data/seed2.jsonl', 'a', encoding="utf-8") as fw:
+                fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
                 fw.close()
+                
         else:
             None
 
