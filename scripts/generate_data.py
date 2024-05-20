@@ -21,7 +21,7 @@ def load(file_path):
     return seed_tasks
 
 
-seed_file_path = "data\seed.jsonl"
+seed_file_path = "data\seed2.jsonl"
 seed_task = load(seed_file_path)
 
 api_file_path = "data\huggingface_api.jsonl"
@@ -29,13 +29,11 @@ api_entries = load(api_file_path)
 
 
 
- 
-
 #Generate
-for api_entry in api_entries[0:1]:
+for api_entry in api_entries:
+    random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
- 
-    
+
     inst_api_pairs = []
     for instruction in sampled_seed_instructions:
         inst_api_pairs.append({"instruction": instruction, "api": api_entry})
@@ -43,10 +41,12 @@ for api_entry in api_entries[0:1]:
     user_message_content = "Generate 10 new (instruction-api pairs) and use the api provided as reference\n"
     for i, pair in enumerate(inst_api_pairs, 1):
         instruction = pair["instruction"]["instruction"]
+        accuracy = pair['api']['performance'].get('accuracy', 'N/A')
+
         i = 0
         user_message_content += (
             f"""
-            {i}. instruction: {instruction}api: domain: {pair['api']['domain']} framework: {pair['api']['framework']} functionality: {pair['api']['functionality']} api_name: {pair['api']['api_name']} api_call: {pair['api']['api_call']} api_arguments: {pair['api']['api_arguments']} python_environment_requirements: {pair['api']['python_environment_requirements']} example_code: {pair['api']['example_code']} performance: dataset: {pair['api']['performance']['dataset']} accuracy: {pair['api']['performance']['accuracy']} description: {pair['api']['description']}"""
+            {i}. instruction: {instruction} api: domain: {pair['api']['domain']} framework: {pair['api']['framework']} functionality: {pair['api']['functionality']} api_name: {pair['api']['api_name']} api_call: {pair['api']['api_call']} api_arguments: {pair['api']['api_arguments']} python_environment_requirements: {pair['api']['python_environment_requirements']} example_code: {pair['api']['example_code']} performance: dataset: {pair['api']['performance']['dataset']} accuracy: {accuracy} description: {pair['api']['description']}"""
         )
                 
 
@@ -61,7 +61,7 @@ for api_entry in api_entries[0:1]:
     for choice in completion.choices:
         gpt_instructions = choice.message.content
         with open('data\pool2.jsonl', 'a', encoding="utf-8") as ft:
-            ft.write(json.dumps(gpt_instructions, ensure_ascii=False) + '\n')
+            ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
             ft.close()
             
             
@@ -76,9 +76,9 @@ for api_entry in api_entries[0:1]:
     for i in trans.split(',') :
         if i != "''":
          instruction = {"instruction": i.replace("'","")}
-        #  print(instruction)
+         instruction_str = str(instruction)+", "+str(api_entry)
          with open('data/seed.jsonl', 'a', encoding="utf-8") as fw:
-                fw.write(json.dumps(instruction, ensure_ascii=False) + '\n')
+                fw.write(json.dumps(str(instruction)+" "+str(api_entry), ensure_ascii=False) + '\n')
                 fw.close()
         else:
             None
