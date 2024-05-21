@@ -29,7 +29,7 @@ api_entries = load(api_file_path)
 
 
 #Generate
-for api_entry in api_entries[209:]:
+for api_entry in api_entries[62:80]:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 
