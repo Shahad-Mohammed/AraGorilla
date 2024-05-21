@@ -34,7 +34,6 @@ def extract_api_output(text):
 
     return extracted_info
 
-
 with open("data/llama_format.jsonl", encoding="utf-8") as f:
     outputs = [line for line in f]
     
