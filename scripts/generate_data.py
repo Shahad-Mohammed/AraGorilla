@@ -21,15 +21,15 @@ def load(file_path):
     return seed_tasks
 
 
-seed_file_path = "data\seed2.jsonl"
+seed_file_path = "data\seed.jsonl"
 seed_task = load(seed_file_path)
 
-api_file_path = "data\huggingface_api.jsonl"
+api_file_path = "data\data2.jsonl"
 api_entries = load(api_file_path)
 
 
 #Generate
-for api_entry in api_entries[62:80]:
+for api_entry in api_entries[0:1]:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 
@@ -37,18 +37,9 @@ for api_entry in api_entries[62:80]:
     for instruction in sampled_seed_instructions:
         inst_api_pairs.append({"instruction": instruction, "api": api_entry})
 
-    user_message_content = "Generate 10 new (instruction-api pairs) and use the api provided as reference\n"
-    for i, pair in enumerate(inst_api_pairs, 1):
-        instruction = pair["instruction"]["instruction"]
-        accuracy = pair['api']['performance'].get('accuracy', 'N/A')
+    user_message_content = f"Generate an instruction like this: {instruction} in Arabic for the following domain: {api_entry['domain']}"
 
-        i = 0
-        user_message_content += (
-            f"""
-            {i}. instruction: {instruction} api: domain: {pair['api']['domain']} framework: {pair['api']['framework']} functionality: {pair['api']['functionality']} api_name: {pair['api']['api_name']} api_call: {pair['api']['api_call']} api_arguments: {pair['api']['api_arguments']} python_environment_requirements: {pair['api']['python_environment_requirements']} example_code: {pair['api']['example_code']} performance: dataset: {pair['api']['performance']['dataset']} accuracy: {accuracy} description: {pair['api']['description']}"""
-        )
-                
-
+            
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -59,12 +50,12 @@ for api_entry in api_entries[62:80]:
 
     for choice in completion.choices:
         gpt_instructions = choice.message.content
-        with open('data\pool2.jsonl', 'a', encoding="utf-8") as ft:
+        with open('data\pool3.jsonl', 'a', encoding="utf-8") as ft:
             ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
             ft.close()
             
             
-        with open('data/pool2.jsonl',encoding="utf-8") as f:
+        with open('data/pool3.jsonl',encoding="utf-8") as f:
             gpt_instructions_before_filltering = [json.loads(line) for line in f] 
             
             
