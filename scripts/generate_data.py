@@ -21,7 +21,7 @@ def load(file_path):
     return seed_tasks
 
 
-seed_file_path = "data\seed.jsonl"
+seed_file_path = "data\seed2.jsonl"
 seed_task = load(seed_file_path)
 
 api_file_path = "data\data2.jsonl"
@@ -29,7 +29,7 @@ api_entries = load(api_file_path)
 
 
 #Generate
-for api_entry in api_entries[0:1]:
+for api_entry in api_entries[:2676]:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 
@@ -58,7 +58,7 @@ for api_entry in api_entries[0:1]:
         with open('data/pool3.jsonl',encoding="utf-8") as f:
             gpt_instructions_before_filltering = [json.loads(line) for line in f] 
             
-            
+               
     instrs = extract_instructions(gpt_instructions)
     trans = translate_arabic_to_english((str(instrs).strip('"')).strip('[]') )
 
@@ -69,8 +69,7 @@ for api_entry in api_entries[0:1]:
             with open('data/llama_format.jsonl', 'a', encoding="utf-8") as fw:
                 fw.write(json.dumps(llama_format, ensure_ascii=False) + '\n')
                 fw.close()  
-                
-                
+                     
                 
             instruction = {"instruction": i.replace("'","")}
             with open('data/seed2.jsonl', 'a', encoding="utf-8") as fw:
