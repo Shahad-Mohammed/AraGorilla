@@ -21,10 +21,10 @@ def load(file_path):
     return seed_tasks
 
 
-seed_file_path = "data\seed2.jsonl"
+seed_file_path = r"data\seed2.jsonl"
 seed_task = load(seed_file_path)
 
-api_file_path = "data\data2.jsonl"
+api_file_path = r"data3.jsonl"
 api_entries = load(api_file_path)
 
 
@@ -37,7 +37,7 @@ for api_entry in api_entries[:2676]:
     for instruction in sampled_seed_instructions:
         inst_api_pairs.append({"instruction": instruction, "api": api_entry})
 
-    user_message_content = f"Generate an instruction like this: {instruction} in Arabic for the following domain: {api_entry['domain']}"
+    user_message_content = f"Generate an instruction like this: {instruction} in Arabic for the following domain: {api_entry['<<<domain>>>']}"
 
             
     completion = client.chat.completions.create(
@@ -50,7 +50,7 @@ for api_entry in api_entries[:2676]:
 
     for choice in completion.choices:
         gpt_instructions = choice.message.content
-        with open('data\pool3.jsonl', 'a', encoding="utf-8") as ft:
+        with open(r'data\pool3.jsonl', 'a', encoding="utf-8") as ft:
             ft.write(json.dumps(gpt_instructions,ensure_ascii=False) + '\n')
             ft.close()
             

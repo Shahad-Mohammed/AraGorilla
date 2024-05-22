@@ -1,71 +1,132 @@
-import json
 
-# Function to process each JSON object
-def process_data(data):
-    # Extracting information from the input data
-    instruction_key = "###Instruction:"
-    output_key = "###Output:"
-    code_key = "<<<code>>>:"
+# import jsonlines
 
-    # Split data["code"] into lines and extract relevant parts
-    lines = data["code"].split('\n')
-    instruction = lines[0].replace(instruction_key, '').strip()
-    output = lines[1:]
+# def transform_structure(input_file, output_file):
+#     with jsonlines.open(input_file) as reader, jsonlines.open(output_file, mode='w') as writer:
+#         for obj in reader:
+#             # Extract necessary fields from the original JSON object
+#             code = obj.get("code", "")
+#             api_call = obj.get("api_call", "")
+#             provider = obj.get("provider", "")
+#             api_data = obj.get("api_data", {})
 
-    # Helper function to extract value after a specific marker
-    def extract_value(marker, lines):
-        for line in lines:
-            if marker in line:
-                return line.split(marker)[1].strip()
-        return None
+#             # Extract the domain
+#             domain = api_data.get('domain', '')
 
-    # Extracting domain, api_call, api_provider, explanation, and code
-    domain = extract_value('<<<domain>>>: ', output)
-    api_call = extract_value('<<<api_call>>>: ', output)
-    api_provider = extract_value('<<<api_provider>>>: ', output)
+#             # Extract the explanation part
+#             explanation_start = code.find("<<<explanation>>>:") + len("<<<explanation>>>:")
+#             code_start = code.find("<<<code>>>:")
+#             if explanation_start != -1 and code_start != -1:
+#                 explanation = code[explanation_start:code_start].strip()
+#             else:
+#                 explanation = ""
 
-    # Extracting explanation (lines starting with <<<explanation>>>)
-    explanation_lines = [line.replace('<<<explanation>>>: ', '') for line in output if line.startswith('<<<explanation>>>: ')]
-    explanation = ' '.join(explanation_lines)
+#             # Extract the code part
+#             if "<<<code>>>:" in code:
+#                 code_part = code.split("<<<code>>>:")[1].strip()
+#             else:
+#                 code_part = ""
 
-    # Extracting code (lines starting with <<<code>>> and onwards until a new marker is found)
-    code_start_index = None
-    for idx, line in enumerate(output):
-        if line.startswith('<<<code>>>: '):
-            code_start_index = idx
-            break
+#             # Construct the new structure
+#             new_structure = {
+#                 "domain": domain,
+#                 "api_call": api_call,
+#                 "api_provider": provider,
+#                 "explanation": explanation,
+#                 "code": code_part,
+#                 "api_data": {
+#                     "domain": domain,
+#                     "framework": "Hugging Face Transformers",
+#                     "functionality": "Feature Extraction",
+#                     "api_name": api_data.get('api_name', ''),
+#                     "api_call": api_data.get('api_call', ''),
+#                     "api_arguments": api_data.get('api_arguments', 'N/A'),
+#                     "python_environment_requirements": api_data.get('python_environment_requirements', 'transformers'),
+#                     "example_code": api_data.get('example_code', 'N/A'),
+#                     "performance": api_data.get('performance', {"dataset": "N/A", "accuracy": "N/A"}),
+#                     "description": api_data.get('description', 'A pre-trained ConvBERT model for feature extraction provided by YituTech, based on the Hugging Face Transformers library.')
+#                 }
+#             }
 
-    code_lines = []
-    if code_start_index is not None:
-        for line in output[code_start_index:]:
-            if line.startswith('<<<') and not line.startswith('<<<code>>>: '):
-                break
-            code_lines.append(line.replace('<<<code>>>: ', ''))
+#             # Include the api_call and provider in the code part if necessary
+#             if "api_call" not in new_structure["code"]:
+#                 new_structure["code"] += f"\n# API Call: {api_call}"
+#             if "provider" not in new_structure["code"]:
+#                 new_structure["code"] += f"\n# Provider: {provider}"
 
-    code = '\n'.join(code_lines).strip()
+#             # Write the new structure to the output file
+#             writer.write(new_structure)
 
-    # Construct the final dictionary
-    output_dict = {
-        "domain": domain,
-        "api_call": api_call,
-        "api_provider": api_provider,
-        "explanation": explanation,
-        "code": code,
-        "api_data": {
-            **data["api_data"],
-            "api_call": code  # Overwriting the api_call with the entire code content
-        }
-    }
-    return output_dict
+# # Specify the input and output files
+# input_file = 'data/huggingface_train.jsonl'  # Use forward slashes or double backslashes
+# output_file = 'data3.jsonl'
 
-# Read the JSONL file line by line
-with open("data/huggingface_train.jsonl", encoding="utf-8") as f:
-    lines = f.readlines()
+# # Transform the structure
+# transform_structure(input_file, output_file)
 
-# Process each JSON object and write the output to a new JSONL file
-with open('data2.jsonl', "w", encoding="utf-8") as f:
-    for line in lines:
-        data = json.loads(line)
-        output_dict = process_data(data)
-        output_json = json.dumps(output_dict, ensure_ascii=False)
-        f.write(output_json + "\n")
+
+import jsonlines
+
+def transform_structure(input_file, output_file):
+    with jsonlines.open(input_file) as reader, jsonlines.open(output_file, mode='w') as writer:
+        for obj in reader:
+            # Extract necessary fields from the original JSON object
+            code = obj.get("code", "")
+            api_call = obj.get("api_call", "")
+            provider = obj.get("provider", "")
+            api_data = obj.get("api_data", {})
+
+
+
+            # Extract the domain
+            domain = api_data.get('domain', '')
+
+            # Extract the explanation part
+            explanation_start = code.find("<<<explanation>>>:") + len("<<<explanation>>>:")
+            code_start = code.find("<<<code>>>:")
+            if explanation_start != -1 and code_start != -1:
+                explanation = code[explanation_start:code_start].strip()
+            else:
+                explanation = ""
+
+            # Extract the code part
+            if "<<<code>>>:" in code:
+                code_part = code.split("<<<code>>>:")[1].strip()
+            else:
+                code_part = ""
+
+
+
+            # Construct the new structure
+            new_structure = {
+                "<<<domain>>>": domain,
+                "<<<api_call>>>": api_call,
+                "<<<api_provider>>>": provider,
+                "<<<explanation>>>": explanation,
+                "<<<code>>>": code_part,
+                "api_call": api_call,
+                "provider": provider,
+                "api_data": {
+                    "domain": domain,
+                    "framework": "Hugging Face Transformers",
+                    "functionality": "Feature Extraction",
+                    "api_name": api_data.get('api_name', ''),
+                    "api_call": api_data.get('api_call', ''),
+                    "api_arguments": api_data.get('api_arguments', 'N/A'),
+                    "python_environment_requirements": [api_data.get('python_environment_requirements', 'transformers')],
+                    "example_code": api_data.get('example_code', 'N/A'),
+                    "performance": api_data.get('performance', {"dataset": "N/A", "accuracy": "N/A"}),
+                    "description": api_data.get('description', 'A pre-trained ConvBERT model for feature extraction provided by YituTech, based on the Hugging Face Transformers library.')
+                }
+            }
+
+
+            # Write the new structure to the output file
+            writer.write(new_structure)
+
+# Specify the input and output files
+input_file = 'data/huggingface_train.jsonl'  # Use forward slashes or double backslashes
+output_file = 'data3.jsonl'
+
+# Transform the structure
+transform_structure(input_file, output_file)
