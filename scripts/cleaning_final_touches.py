@@ -29,6 +29,6 @@ for line in outputs:
 
     seed_modified_outputs = "<s>[INST]"+ inst +" [/INST]"+ str(api).strip('{}') +" </s>"
 
-    with open('data/seed_modified_clean_outputs.jsonl', 'a', encoding="utf-8") as fw:
+    with open('data/seed_modified_clean_outputs2.jsonl', 'a', encoding="utf-8") as fw:
         fw.write(json.dumps(seed_modified_outputs, ensure_ascii=False) + '\n')
         fw.close() 

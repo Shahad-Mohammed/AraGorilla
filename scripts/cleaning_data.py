@@ -17,7 +17,7 @@ def extract_api_output(text):
         'framework': r"'framework': '([^']+)'",
         'functionality': r"'functionality': '([^']+)'",
         'api_name': r"'api_name': '([^']+)'",
-        'api_call': r"'api_call':\"([^\"]+)\"",
+        'api_call': r"'api_call': '([^']+)'",
         'description': r"'description': '([^']+)'"
     }
 
