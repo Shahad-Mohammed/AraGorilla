@@ -24,12 +24,12 @@ def load(file_path):
 seed_file_path = r"data\seed2.jsonl"
 seed_task = load(seed_file_path)
 
-api_file_path = r"data3.jsonl"
+api_file_path = r"data\data3.jsonl"
 api_entries = load(api_file_path)
 
 
 #Generate
-for api_entry in api_entries[:2676]:
+for api_entry in api_entries[1500:3000]:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 
@@ -66,7 +66,7 @@ for api_entry in api_entries[:2676]:
         if i != "''":
             
             llama_format = "<s>[INST]"+ str(i.replace("'","")).strip("{}") +"? [/INST]"+ str(api_entry).strip("{{}}") +" </s>"
-            with open('data/llama_format.jsonl', 'a', encoding="utf-8") as fw:
+            with open('data/aragorilla_dataset.jsonl', 'a', encoding="utf-8") as fw:
                 fw.write(json.dumps(llama_format, ensure_ascii=False) + '\n')
                 fw.close()  
                      
