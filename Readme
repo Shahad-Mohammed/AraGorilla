@@ -1,46 +1,35 @@
-<h1 align="center">
-  <br>
-  <a href="#"><img src="https://placekitten.com/200/200" alt="AraGorilla" width="200"></a>
-  <br>
-  AraGorilla
-  <br>
-</h1>
+# Markdownify
 
-<h4 align="center">An Arabic Large Language Model (LLM) for precise API responses.</h4>
+A minimal Markdown Editor desktop app built on top of Electron.
 
-<p align="center">
-  <a href="#"><img src="https://badge.fury.io/js/electron-markdownify.svg" alt="Gitter"></a>
-  <a href="#"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
-  <a href="#"><img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg"></a>
-  <a href="#"><img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat"></a>
-</p>
-
-<p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#license">License</a>
-</p>
-
-![screenshot](https://placekitten.com/400/200)
+[![Gitter](https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg)](https://gitter.im/amitmerchant1990/electron-markdownify)
 
 ## Key Features
 
-- Fine-tuned Arabic Large Language Model (LLM)
-- Structured pipeline for generating Arabic instructions for APIs
-- Retrieval-Augmented Generation (RAG) approach for reducing hallucinations
-- Evaluation metrics include AST sub-tree matching and cosine similarity
+- **LivePreview** - Make changes, See changes: Instantly see what your Markdown documents look like in HTML as you create them.
+- **Sync Scrolling**: While you type, LivePreview will automatically scroll to the current location you're editing.
+- **GitHub Flavored Markdown**
+- **Syntax highlighting**
+- **KaTeX Support**
+- **Dark/Light mode**
+- **Toolbar for basic Markdown formatting**
+- **Supports multiple cursors**
+- **Save the Markdown preview as PDF**
+- **Emoji support in preview** :tada:
+- **App will keep alive in tray for quick usage**
+- **Full screen mode**: Write distraction-free.
+- **Cross-platform**: Windows, macOS, and Linux ready.
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need Git and Node.js (which comes with npm) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/yourusername/AraGorilla
+$ git clone https://github.com/amitmerchant1990/electron-markdownify
 
 # Go into the repository
-$ cd AraGorilla
+$ cd electron-markdownify
 
 # Install dependencies
 $ npm install
