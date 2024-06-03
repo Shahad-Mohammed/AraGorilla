@@ -210,6 +210,3 @@ for prompt in inst_eval_data[11:21]:
   with open('/content/Retrival_Infrence_results.jsonl', 'a') as f:
     f.write(json.dumps(generated, ensure_ascii=False) + '\n')
 
-from google.colab import drive
-drive.mount('/content/drive')
-
