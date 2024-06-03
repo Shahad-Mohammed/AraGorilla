@@ -6,7 +6,7 @@ import random
 
 from langdetect import detect
 from mtranslate import translate
-from fillter import extract_instructions,translate_arabic_to_english,similarity
+from scripts.Cleaning.fillter import extract_instructions,translate_arabic_to_english,similarity
 
 # Create the OpenAI client with the API key
 client = OpenAI(
@@ -29,7 +29,7 @@ api_entries = load(api_file_path)
 
 
 #Generate
-for api_entry in api_entries[1500:3000]:
+for api_entry in api_entries:
     random.shuffle(seed_task)
     sampled_seed_instructions = random.sample(seed_task, 3)
 

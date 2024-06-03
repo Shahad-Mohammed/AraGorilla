@@ -4,3 +4,9 @@
 !pip install translators
 !pip install mtranslate
 !pip install langdetect
+!pip install huggingface_hub
+!pip install tree-sitter-python
+!pip install arabic_reshaper
+!pip install transformers
+
+

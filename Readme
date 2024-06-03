@@ -1,1 +1,37 @@
-this is a Gorilla project 
+# AraGorilla
+
+![AraGorilla](https://placekitten.com/200/200) <!-- Add your project logo here -->
+
+---
+
+## Introduction
+
+AraGorilla is an Arabic Large Language Model (LLM) specifically designed to handle Arabic prompts and generate precise API responses. In this repository, we provide the implementation and fine-tuning details of AraGorilla.
+
+## Abstract
+
+Large Language Models (LLMs) for Arabic have seen significant advancements, yet their ability to interact with APIs remains limited. AraGorilla addresses this limitation by introducing an Arabic LLM fine-tuned for understanding Arabic requests and generating accurate API responses. Using a structured pipeline inspired by the self-instruct paradigm, AraGorilla aims to enhance efficiency and reduce hallucinations in API responses.
+
+## Features
+
+- Fine-tuned Arabic Large Language Model (LLM)
+- Structured pipeline for generating Arabic instructions for APIs
+- Retrieval-Augmented Generation (RAG) approach for reducing hallucinations
+- Evaluation metrics include AST sub-tree matching and cosine similarity
+
+## Methodology
+
+The methodology involves dataset processing, instruction fine-tuning, retrieval-aware inference, and the development of AraGorilla. We provide detailed steps and configurations used in each stage of the process.
+
+## Evaluation
+
+AraGorilla's performance is evaluated using AST sub-tree matching and cosine similarity metrics. Comparative analysis with other Arabic LLMs demonstrates its superiority in generating API calls from Arabic prompts.
+
+## Usage
+
+To use AraGorilla, follow these steps:
+1. Clone the repository.
+2. Install dependencies.
+3. Fine-tune the model using the provided dataset.
+4. Evaluate the model's performance using the provided metrics.
+
