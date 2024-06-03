@@ -6,7 +6,7 @@
 
 ## Introduction
 
-AraGorilla is an Arabic Large Language Model (LLM) specifically designed to handle Arabic prompts and generate precise API responses. In this repository, we provide the implementation and fine-tuning details of AraGorilla.
+AraGorilla is an Arabic Large Language Model (LLM) specifically designed to handle Arabic prompts and generate precise API responses. In this repository, we provide the implementation and fine-tuning details of AraGorilla, as described in the paper "AraGorilla: Arabic Large Language Model Connected with Massive APIs."
 
 ## Abstract
 
@@ -34,4 +34,3 @@ To use AraGorilla, follow these steps:
 2. Install dependencies.
 3. Fine-tune the model using the provided dataset.
 4. Evaluate the model's performance using the provided metrics.
-
