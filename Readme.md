@@ -1,14 +1,17 @@
-# Markdownify
+# AraGorilla: Arabic Large Language Model Connected with APIs
 
 ![image](https://github.com/Shahad-Mohammed/AraGorilla/assets/74230739/691e81ba-51dc-4eeb-8fe9-717290661435)
+
+
+https://github.com/Shahad-Mohammed/AraGorilla/assets/74230739/5f9939d7-96d5-421e-a537-f21eb61fa5ea
 
 A minimal Markdown Editor desktop app built on top of Electron.
 
 [![Gitter](https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg)](https://gitter.im/amitmerchant1990/electron-markdownify)
 
 
+AraGorilla is a fine-tuned LLaMA3-8B model specifically for Arabic instructions-API calls. Inspired by the Gorilla paper's methodology, we employed the self-instruct paradigm to generate {instruction, API} pairs. To adapt LLaMA for our task, we converted these pairs into a structured conversational format, resembling interactions between a user and an agent.
 
-https://github.com/Shahad-Mohammed/AraGorilla/assets/74230739/5f9939d7-96d5-421e-a537-f21eb61fa5ea
 
 
 
