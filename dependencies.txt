@@ -8,5 +8,9 @@
 !pip install tree-sitter-python
 !pip install arabic_reshaper
 !pip install transformers
-
+!pip install rank_bm25
+!pip install langchain
+!pip install langchain_community
+!pip install bitsandbytes
+!pip install peft
 
