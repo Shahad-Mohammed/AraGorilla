@@ -1,8 +1,16 @@
 # Markdownify
 
+![image](https://github.com/Shahad-Mohammed/AraGorilla/assets/74230739/691e81ba-51dc-4eeb-8fe9-717290661435)
+
 A minimal Markdown Editor desktop app built on top of Electron.
 
 [![Gitter](https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg)](https://gitter.im/amitmerchant1990/electron-markdownify)
+
+
+
+https://github.com/Shahad-Mohammed/AraGorilla/assets/74230739/5f9939d7-96d5-421e-a537-f21eb61fa5ea
+
+
 
 ## Key Features
 
