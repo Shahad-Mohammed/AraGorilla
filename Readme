@@ -4,33 +4,49 @@
 
 ---
 
-## Introduction
+## Overview
 
-AraGorilla is an Arabic Large Language Model (LLM) specifically designed to handle Arabic prompts and generate precise API responses. In this repository, we provide the implementation and fine-tuning details of AraGorilla, as described in the paper "AraGorilla: Arabic Large Language Model Connected with Massive APIs."
-
-## Abstract
-
-Large Language Models (LLMs) for Arabic have seen significant advancements, yet their ability to interact with APIs remains limited. AraGorilla addresses this limitation by introducing an Arabic LLM fine-tuned for understanding Arabic requests and generating accurate API responses. Using a structured pipeline inspired by the self-instruct paradigm, AraGorilla aims to enhance efficiency and reduce hallucinations in API responses.
+Welcome to AraGorilla, an Arabic Large Language Model (LLM) tailored for handling Arabic prompts and generating precise API responses. This repository contains everything you need to know about AraGorilla, from its features to its implementation details.
 
 ## Features
 
-- Fine-tuned Arabic Large Language Model (LLM)
-- Structured pipeline for generating Arabic instructions for APIs
-- Retrieval-Augmented Generation (RAG) approach for reducing hallucinations
-- Evaluation metrics include AST sub-tree matching and cosine similarity
-
-## Methodology
-
-The methodology involves dataset processing, instruction fine-tuning, retrieval-aware inference, and the development of AraGorilla. We provide detailed steps and configurations used in each stage of the process.
-
-## Evaluation
-
-AraGorilla's performance is evaluated using AST sub-tree matching and cosine similarity metrics. Comparative analysis with other Arabic LLMs demonstrates its superiority in generating API calls from Arabic prompts.
+- **Fine-tuned Arabic LLM:** AraGorilla is specifically trained to understand Arabic requests and provide accurate API responses.
+- **Structured Pipeline:** Our structured pipeline ensures efficiency and reduces hallucinations in API responses.
+- **Retrieval-Augmented Generation (RAG):** We employ the RAG approach to further enhance response accuracy.
+- **Evaluation Metrics:** We use AST sub-tree matching and cosine similarity to evaluate AraGorilla's performance.
 
 ## Usage
 
-To use AraGorilla, follow these steps:
-1. Clone the repository.
-2. Install dependencies.
-3. Fine-tune the model using the provided dataset.
-4. Evaluate the model's performance using the provided metrics.
+To get started with AraGorilla, follow these steps:
+
+1. **Clone the Repository:** Clone this repository to your local machine.
+2. **Install Dependencies:** Install the necessary dependencies for fine-tuning and evaluation.
+3. **Fine-Tune the Model:** Use the provided dataset to fine-tune AraGorilla according to your needs.
+4. **Evaluate Performance:** Evaluate AraGorilla's performance using the provided metrics.
+
+## Methodology
+
+AraGorilla's development process involves several key stages:
+
+1. **Dataset Processing:** We preprocess the dataset to prepare it for fine-tuning.
+2. **Instruction Fine-Tuning:** Fine-tune the model to understand Arabic requests accurately.
+3. **Retrieval-Aware Inference:** Implement retrieval-aware inference to improve response quality.
+4. **Model Development:** Develop AraGorilla based on the structured pipeline and RAG approach.
+
+## Evaluation
+
+We assess AraGorilla's performance through rigorous evaluation using AST sub-tree matching and cosine similarity metrics. Comparative analysis with other Arabic LLMs demonstrates its superiority in generating API calls from Arabic prompts.
+
+## Citation
+
+If you find AraGorilla useful in your research or work, please consider citing our paper:
+
+[Insert Paper Citation Here]
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to explore the repository and contribute to AraGorilla's development! If you have any questions or suggestions, don't hesitate to reach out.
