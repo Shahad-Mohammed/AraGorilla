@@ -58,7 +58,9 @@ This project is licensed under the MIT License. See the LICENSE file for details
 For inquiries or support, please contact:
 
 Shahad Mohammed Aboukozzana: shahadmoh232@gmail.com
+
 Maryam Hussain Saif: maryam.h.saif@gmail.com
+
 Batool Shaker Al-Goraibi: batool.ghoraibi@gmail.com
 
 ## Acknowledgements
