@@ -37,10 +37,12 @@ sh
 Copy code
 cd aragorilla
 pip install -r requirements.txt
-Usage
-Train AraGorilla on your dataset.
-Fine-tune the LLaMA3-8B model using the provided Arabic instruction-API pairs.
-Evaluate API requests using AST sub-tree matching and cosine similarity.
+
+
+## Usage
+* Train AraGorilla on your dataset.
+* Fine-tune the LLaMA3-8B model using the provided Arabic instruction-API pairs.
+* Evaluate API requests using AST sub-tree matching and cosine similarity.
 
 ## Roadmap
 Enhance the model's performance by incorporating additional retrieval techniques.
