@@ -17,6 +17,7 @@ AraGorilla addresses the limitations of existing Arabic LLMs in generating APIs 
 ### Built With
 - GPT-3.5 Turbo
 - Retrieval-Augmented Generation (RAG)
+- Llama3-8B
 
 ## Getting Started
 Follow these instructions to set up the project locally.
